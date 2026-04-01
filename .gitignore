@@ -1,0 +1,50 @@
+# ===== Dependencies =====
+node_modules/
+.pnp
+.pnp.js
+
+# ===== Environment variables (NEVER commit) =====
+.env
+.env.local
+.env.*.local
+
+# ===== Build outputs =====
+dist/
+build/
+out/
+
+# ===== TypeScript compiled output trong src (chỉ commit .ts) =====
+server/src/**/*.js
+server/src/**/*.js.map
+
+# ===== Angular =====
+client/.angular/
+client/dist/
+
+# ===== Prisma generated =====
+server/prisma/generated/
+
+# ===== Logs =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== IDE =====
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===== Test coverage =====
+coverage/

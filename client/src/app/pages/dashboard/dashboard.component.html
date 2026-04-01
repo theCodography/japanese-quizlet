@@ -1,0 +1,125 @@
+<!-- ══════════════════════════════════════════════════════════════════════
+     ZEN EDITORIAL – DASHBOARD (HOME SCREEN)
+     ══════════════════════════════════════════════════════════════════════ -->
+<div class="max-w-6xl mx-auto space-y-12 animate-[fadeIn_0.5s_ease-out]">
+
+  <!-- ── HERO SECTION: Welcome & JLPT Countdown ── -->
+  <header class="relative overflow-hidden bg-surface-container-low rounded-[3rem] p-10 sm:p-14 shadow-[0_32px_64px_rgba(26,28,29,0.02)] border border-outline-variant/5">
+    
+    <!-- Ghost Kanji Decoration (Asymmetric Moment) -->
+    <div class="absolute -right-20 -top-20 text-[20rem] font-black text-primary/5 select-none pointer-events-none rotate-12">和</div>
+    
+    <div class="relative z-10 max-w-2xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-on-surface tracking-tighter mb-4 leading-tight font-headline">
+        Kon'nichiwa, Minh! <br>
+        <span class="text-primary">Ready to master Japanese today?</span>
+      </h1>
+      <p class="text-lg text-on-surface-variant font-body mb-10 max-w-lg leading-relaxed">
+        Học tập với phương pháp spaced repetition giúp bạn ghi nhớ từ vựng lâu hơn và hiệu quả hơn. Hãy chuẩn bị cho JLPT N3 nhé!
+      </p>
+
+      <!-- Countdown Widget -->
+      <div class="inline-flex items-center bg-surface-container-lowest px-6 py-4 rounded-3xl shadow-sm border border-outline-variant/10 group hover:shadow-md transition-all">
+        <div class="w-12 h-12 bg-primary-fixed rounded-2xl flex items-center justify-center text-primary mr-5 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-2xl font-bold">calendar_today</span>
+        </div>
+        <div>
+          <span class="block text-2xl font-black text-secondary font-headline tracking-tighter">85 Ngày nữa</span>
+          <span class="block text-[10px] text-outline font-bold uppercase tracking-widest">Đến kỳ thi JLPT N3 (Dự kiến)</span>
+        </div>
+        <button class="ml-10 text-primary hover:translate-x-1 transition-transform">
+          <span class="material-symbols-outlined font-bold">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── ACTIVITY GRID: Try these activities ── -->
+  <section>
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-bold text-on-surface tracking-tight font-headline">Bắt đầu học ngay</h2>
+      <a routerLink="/decks" class="text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors underline underline-offset-4">Xem tất cả thư viện</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Flashcards Card -->
+      <div routerLink="/decks" class="group flex flex-col bg-surface-container-lowest p-8 rounded-[2.5rem] shadow-[0_24px_48px_rgba(26,28,29,0.03)] border border-outline-variant/5 hover:shadow-[0_40px_80px_rgba(134,78,90,0.08)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+        <div class="w-14 h-14 bg-primary-container-dim rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform mb-8">
+          <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">style</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface mb-3 font-headline group-hover:text-primary transition-colors">Học Flashcards</h3>
+        <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+          Ôn tập từ vựng với thẻ thông minh và hệ thống ghi nhớ theo thời gian linh hoạt.
+        </p>
+        <div class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center justify-between">
+          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">14 Thẻ học hôm nay</span>
+          <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">east</span>
+        </div>
+      </div>
+
+      <!-- Grammar Card -->
+      <div routerLink="/grammar" class="group flex flex-col bg-surface-container-lowest p-8 rounded-[2.5rem] shadow-[0_24px_48px_rgba(26,28,29,0.03)] border border-outline-variant/5 hover:shadow-[0_40px_80px_rgba(76,86,175,0.08)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+        <div class="w-14 h-14 bg-secondary-container/20 rounded-2xl flex items-center justify-center text-secondary group-hover:scale-110 transition-transform mb-8">
+          <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface mb-3 font-headline group-hover:text-secondary transition-colors">Thư viện Ngữ pháp</h3>
+        <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+          Kho lưu trữ cấu trúc ngữ pháp từ N5 đến N3 đầy đủ ví dụ và cách dùng.
+        </p>
+        <div class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center justify-between">
+          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">120+ Cấu trúc N3</span>
+          <span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">east</span>
+        </div>
+      </div>
+
+      <!-- Listening Card -->
+      <div routerLink="/listening" class="group flex flex-col bg-surface-container-lowest p-8 rounded-[2.5rem] shadow-[0_24px_48px_rgba(26,28,29,0.03)] border border-outline-variant/5 hover:shadow-[0_40px_80px_rgba(0,98,157,0.08)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+        <div class="w-14 h-14 bg-tertiary-container/30 rounded-2xl flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform mb-8">
+          <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">headphones</span>
+        </div>
+        <h3 class="text-xl font-bold text-on-surface mb-3 font-headline group-hover:text-tertiary transition-colors">Luyện Nghe JLPT</h3>
+        <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+          Thực hành kỹ năng nghe hiểu với các đoạn hội thoại thực tế và đề thi N3.
+        </p>
+        <div class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center justify-between">
+          <span class="text-[10px] font-bold text-outline uppercase tracking-widest">15 Bài nghe mới</span>
+          <span class="material-symbols-outlined text-tertiary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">east</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PROGRESS SECTION: Personal Stats ── -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-8 py-10">
+    <div class="bg-surface-container-low p-8 rounded-[2.5rem] flex items-center gap-6 group hover:bg-surface-container-high transition-colors">
+      <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-on-surface shadow-sm group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+      </div>
+      <div>
+        <p class="text-2xl font-black text-on-surface font-headline tracking-tighter">14 Ngày</p>
+        <p class="text-[10px] text-outline font-bold uppercase tracking-widest">Học tập liên tiếp</p>
+      </div>
+    </div>
+    <div class="bg-surface-container-low p-8 rounded-[2.5rem] flex items-center gap-6 group hover:bg-surface-container-high transition-colors">
+      <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-on-surface shadow-sm group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">school</span>
+      </div>
+      <div>
+        <p class="text-2xl font-black text-on-surface font-headline tracking-tighter">1,248 Từ</p>
+        <p class="text-[10px] text-outline font-bold uppercase tracking-widest">Từ vựng đã nắm vững</p>
+      </div>
+    </div>
+    <div class="bg-surface-container-low p-8 rounded-[2.5rem] flex items-center gap-6 group hover:bg-surface-container-high transition-colors">
+      <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-on-surface shadow-sm group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">stars</span>
+      </div>
+      <div>
+        <p class="text-2xl font-black text-on-surface font-headline tracking-tighter">4,850 XP</p>
+        <p class="text-[10px] text-outline font-bold uppercase tracking-widest">Điểm kinh nghiệm</p>
+      </div>
+    </div>
+  </section>
+
+</div>

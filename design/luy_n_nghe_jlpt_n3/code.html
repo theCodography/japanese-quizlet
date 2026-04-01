@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .zen-glass {
+            background: rgba(249, 249, 251, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f9f9fb;
+            color: #1a1c1d;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom scrollbar for Zen aesthetic */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d6c2c4; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-container-highest": "#e2e2e4",
+                "secondary-fixed": "#e0e0ff",
+                "secondary": "#4c56af",
+                "surface-dim": "#d9dadc",
+                "on-secondary-fixed-variant": "#343d96",
+                "on-background": "#1a1c1d",
+                "tertiary-container": "#a0ceff",
+                "primary-fixed-dim": "#fbb3c1",
+                "surface-container-lowest": "#ffffff",
+                "secondary-container": "#959efd",
+                "surface-bright": "#f9f9fb",
+                "on-tertiary-container": "#00588e",
+                "surface-container-low": "#f3f3f5",
+                "primary-container": "#ffb7c5",
+                "inverse-primary": "#fbb3c1",
+                "outline-variant": "#d6c2c4",
+                "tertiary-fixed": "#cfe5ff",
+                "secondary-fixed-dim": "#bdc2ff",
+                "primary": "#864e5a",
+                "surface-variant": "#e2e2e4",
+                "inverse-on-surface": "#f0f0f2",
+                "on-tertiary-fixed-variant": "#004a78",
+                "on-tertiary": "#ffffff",
+                "on-surface-variant": "#514345",
+                "on-primary": "#ffffff",
+                "outline": "#837375",
+                "tertiary-fixed-dim": "#99cbff",
+                "background": "#f9f9fb",
+                "surface-container-high": "#e8e8ea",
+                "on-secondary-container": "#27308a",
+                "on-secondary-fixed": "#000767",
+                "surface": "#f9f9fb",
+                "on-secondary": "#ffffff",
+                "on-primary-container": "#7b4551",
+                "on-primary-fixed": "#360c19",
+                "error-container": "#ffdad6",
+                "on-surface": "#1a1c1d",
+                "surface-container": "#eeeef0",
+                "on-error": "#ffffff",
+                "primary-fixed": "#ffd9df",
+                "tertiary": "#00629d",
+                "on-tertiary-fixed": "#001d34",
+                "on-error-container": "#93000a",
+                "surface-tint": "#864e5a",
+                "on-primary-fixed-variant": "#6b3743",
+                "error": "#ba1a1a",
+                "inverse-surface": "#2f3132"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Be Vietnam Pro"],
+                "label": ["Be Vietnam Pro"]
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md w-full sticky top-0 z-50 shadow-sm dark:shadow-none font-plus-jakarta-sans text-sm tracking-tight">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-2xl font-bold text-rose-900 dark:text-rose-100 italic cursor-pointer active:scale-95 transition-transform">
+                Zen Nihongo
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-rose-700 dark:text-rose-300 font-bold border-b-2 border-rose-400 transition-colors duration-300" href="#">Lessons</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-rose-800 transition-colors duration-300 hover:bg-rose-50/50 dark:hover:bg-rose-900/20 px-2 py-1 rounded" href="#">Practice</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-rose-800 transition-colors duration-300 hover:bg-rose-50/50 dark:hover:bg-rose-900/20 px-2 py-1 rounded" href="#">Community</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-rose-800 transition-colors duration-300 hover:bg-rose-50/50 dark:hover:bg-rose-900/20 px-2 py-1 rounded" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold transition-transform active:scale-95">Go Premium</button>
+<img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary-container" data-alt="Close-up portrait of a smiling professional person in soft natural lighting with a blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1FPGMcL3FkEQdjt5UXhZidmEMSq4jlqspjYAu6vxHYTmUpFv7piD0VUGoR_OsG9O24eXJIHq8rPqC-AmESkSpWIMm27-hyjOTTnEeQcwA5QghZ3O9ms6lngMDpb-psU2R9GkQTs4TirG35-rVfYlRjr-DiTqmFeQhvhneAy7JFjAC2HMyDgIVyy0vK9jlJXFAdxnOtDafy-Otc8fZx7g7NZryS36Zq0k4AE6UvSRSEw9L-Pfpj5VCD59v3mGt6ux5pMBzb4Yg24ME"/>
+</div>
+</div>
+</header>
+<div class="flex min-h-[calc(100vh-72px)]">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col gap-2 py-8 pr-4 h-[calc(100vh-72px)] w-64 fixed left-0 top-16 bg-slate-50 dark:bg-slate-900 font-be-vietnam-pro text-sm">
+<div class="px-6 mb-6">
+<h3 class="font-plus-jakarta-sans font-semibold text-indigo-900 text-lg">Proficiency Levels</h3>
+<p class="text-slate-500 text-xs">Select your target level</p>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:translate-x-1 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_1">filter_1</span> JLPT N1
+                </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:translate-x-1 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_2">filter_2</span> JLPT N2
+                </a>
+<a class="flex items-center gap-3 px-6 py-3 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-900 dark:text-indigo-100 rounded-r-full font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_3">filter_3</span> JLPT N3
+                </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:translate-x-1 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_4">filter_4</span> JLPT N4
+                </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:translate-x-1 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="filter_5">filter_5</span> JLPT N5
+                </a>
+</div>
+<div class="mt-auto px-6 pb-4">
+<button class="w-full py-3 bg-secondary text-white rounded-xl font-semibold shadow-sm hover:opacity-90 transition-opacity">Take Placement Test</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 lg:ml-64 p-6 md:p-12 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-12">
+<nav class="flex items-center gap-2 text-xs text-outline mb-4 uppercase tracking-widest font-semibold">
+<span>Lessons</span>
+<span class="material-symbols-outlined text-[10px]">arrow_forward_ios</span>
+<span>JLPT N3</span>
+<span class="material-symbols-outlined text-[10px]">arrow_forward_ios</span>
+<span class="text-primary">Listening</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-2">Luyện Nghe JLPT N3 - Bài số 12</h1>
+<p class="text-on-surface-variant text-lg opacity-80">Topic: Everyday Conversation in a Coffee Shop</p>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-12">
+<!-- Left Column: Audio & Questions -->
+<div class="xl:col-span-8 space-y-12">
+<!-- Elegant Audio Player Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_32px_64px_-12px_rgba(76,86,175,0.06)] overflow-hidden relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+<div class="w-24 h-24 bg-secondary-container rounded-2xl flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="flex-1 w-full">
+<div class="flex justify-between items-end mb-4">
+<div>
+<h3 class="font-bold text-xl">Audio Transcript Track 12</h3>
+<p class="text-sm text-outline">Listening Comprehension • 03:45</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded-full text-xs font-bold bg-surface-container-low text-secondary hover:bg-secondary-fixed transition-colors">0.5x</button>
+<button class="px-3 py-1 rounded-full text-xs font-bold bg-secondary text-white">1x</button>
+<button class="px-3 py-1 rounded-full text-xs font-bold bg-surface-container-low text-secondary hover:bg-secondary-fixed transition-colors">1.5x</button>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="relative w-full h-1.5 bg-surface-container-high rounded-full mb-2">
+<div class="absolute left-0 top-0 h-full w-1/3 bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+<div class="absolute left-1/3 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md"></div>
+</div>
+<div class="flex justify-between text-[10px] font-semibold text-outline tracking-wider">
+<span>01:12</span>
+<span>03:45</span>
+</div>
+</div>
+</div>
+<div class="flex justify-center items-center gap-8 mt-8">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">replay_10</span>
+</button>
+<button class="w-16 h-16 bg-gradient-to-br from-primary to-primary-container text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">forward_10</span>
+</button>
+<div class="flex items-center gap-2 ml-4">
+<span class="material-symbols-outlined text-outline">volume_up</span>
+<div class="w-20 h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-outline h-full w-3/4"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Comprehension Questions -->
+<section class="space-y-8">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-bold">Comprehension Questions</h2>
+<div class="h-px flex-1 bg-outline-variant/30"></div>
+</div>
+<!-- Question 1 -->
+<div class="bg-surface-container-low rounded-xl p-8 transition-all">
+<p class="text-lg font-semibold mb-6">1. <span class="ml-2">Người đàn ông muốn đặt món gì?</span></p>
+<div class="grid grid-cols-1 gap-3">
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-transparent bg-surface-container-lowest text-left hover:border-secondary-container transition-all group">
+<span>A. Một ly cà phê nóng và bánh ngọt</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-secondary bg-secondary/5 text-left transition-all">
+<span class="font-semibold text-secondary">B. Một ly cà phê đá và bánh mì sandwich</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-transparent bg-surface-container-lowest text-left hover:border-secondary-container transition-all group">
+<span>C. Chỉ một ly cà phê đen nóng</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-transparent bg-surface-container-lowest text-left hover:border-secondary-container transition-all group">
+<span>D. Nước cam và bánh sừng bò</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+<!-- Question 2 -->
+<div class="bg-surface-container-low rounded-xl p-8 transition-all">
+<p class="text-lg font-semibold mb-6">2. <span class="ml-2">Tại sao người đàn ông lại chọn chỗ ngồi gần cửa sổ?</span></p>
+<div class="grid grid-cols-1 gap-3">
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-transparent bg-surface-container-lowest text-left hover:border-secondary-container transition-all group">
+<span>A. Vì ở đó mát hơn</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-error bg-error/5 text-left transition-all">
+<span class="font-semibold text-error">C. Vì anh ấy muốn ngắm cảnh đường phố</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">cancel</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-lg border-2 border-transparent bg-surface-container-lowest text-left hover:border-secondary-container transition-all group">
+<span>B. Vì tất cả các bàn khác đều đã có người</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">radio_button_unchecked</span>
+</button>
+</div>
+<p class="mt-4 text-sm text-secondary font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                                Đáp án đúng là B: "Tất cả các bàn bên trong đều đã kín chỗ."
+                            </p>
+</div>
+</section>
+<!-- Transcript Section (Toggleable) -->
+<section class="border-t border-outline-variant/20 pt-12">
+<details class="group">
+<summary class="flex items-center justify-between cursor-pointer bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors list-none">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="text-xl font-bold">Transcript &amp; Translation</span>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-8 space-y-8 animate-in fade-in slide-in-from-top-4 duration-300">
+<div class="space-y-6">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 text-outline font-bold text-sm pt-1">00:15</div>
+<div class="flex-1">
+<p class="text-xl leading-relaxed mb-2">
+                                                男：すみません、この<ruby>席<rt>せき</rt></ruby>、<ruby>空<rt>あ</rt></ruby>いていますか？
+                                            </p>
+<p class="text-on-surface-variant italic">Nam: Xin lỗi, chỗ này còn trống không ạ?</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 text-outline font-bold text-sm pt-1">00:22</div>
+<div class="flex-1">
+<p class="text-xl leading-relaxed mb-2">
+                                                女：はい、どうぞ。でも、ちょっと<ruby>机<rt>つくえ</rt></ruby>が<ruby>揺<rt>ゆ</rt></ruby>れるかもしれません。
+                                            </p>
+<p class="text-on-surface-variant italic">Nữ: Vâng, mời anh. Nhưng cái bàn này hơi bị rung một chút đấy ạ.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 text-outline font-bold text-sm pt-1">00:35</div>
+<div class="flex-1">
+<p class="text-xl leading-relaxed mb-2">
+                                                男：あ、<ruby>本当<rt>ほんとう</rt></ruby>だ。<ruby>他<rt>ほか</rt></ruby>の<ruby>席<rt>せき</rt></ruby>がいっぱいだから、ここでいいですよ。
+                                            </p>
+<p class="text-on-surface-variant italic">Nam: Ồ, đúng thật. Vì các chỗ khác đều hết rồi nên ngồi đây cũng được ạ.</p>
+</div>
+</div>
+</div>
+</div>
+</details>
+</section>
+</div>
+<!-- Right Column: Notes & Vocabulary -->
+<div class="xl:col-span-4 space-y-8">
+<!-- Vocabulary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border-l-4 border-secondary-container">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+                            Key Vocabulary
+                        </h3>
+<div class="space-y-8">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-2xl font-bold text-indigo-900">空く</span>
+<span class="text-xs text-outline font-semibold uppercase tracking-tighter">あく / Aku</span>
+</div>
+<p class="text-on-surface-variant">Trống, vắng, rảnh</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-2xl font-bold text-indigo-900">揺れる</span>
+<span class="text-xs text-outline font-semibold uppercase tracking-tighter">ゆれる / Yureru</span>
+</div>
+<p class="text-on-surface-variant">Rung, lắc, chao đảo</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-2xl font-bold text-indigo-900">一杯</span>
+<span class="text-xs text-outline font-semibold uppercase tracking-tighter">いっぱい / Ippai</span>
+</div>
+<p class="text-on-surface-variant">Đầy, hết chỗ</p>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-secondary-container/20 text-on-secondary-container rounded-full font-bold hover:bg-secondary-container/40 transition-colors">
+                            Add to Flashcards
+                        </button>
+</section>
+<!-- Grammar Notes Card -->
+<section class="bg-surface-container-low rounded-xl p-8">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">lightbulb</span>
+                            Grammar Point
+                        </h3>
+<div class="p-4 bg-white rounded-lg mb-4">
+<p class="font-bold text-indigo-900 mb-2">～かもしれません</p>
+<p class="text-sm text-on-surface-variant">Diễn đạt sự suy đoán không chắc chắn. "Có lẽ là...", "Có thể là..."</p>
+</div>
+<p class="text-sm opacity-70">Example: <br/>あしたは<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>るかもしれません。<br/>(Ngày mai có lẽ sẽ mưa.)</p>
+</section>
+<!-- Lesson Image (Decorative/Atmospheric) -->
+<div class="rounded-xl overflow-hidden shadow-lg h-64 relative group">
+<img alt="Japanese Cafe Atmosphere" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A cozy, sunlit modern Japanese cafe interior with minimalist wooden furniture and a large window overlooking a quiet street" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB34b6KukqpM2UbEfZUiyhL_PN7KqJ2uom3rrD3zVq0lcYtjwmKWxC95qkLB9k0mq1ti0SG5u74Jo1evfvksrpID0XN9xslxKkiHPzdhuqw00GC4lAtR5j7Wen122LgoeyzYh9HgtR8Buz9KekPaB2y0uCA07TADbMPAvb7thiqiosjtYHLJnjE5p2HYvR3hxr55hrYH60msxtUS7PapMMT8p5tkWXlpcrG78tba2fxwvxiXRIUneZW5GFrgO7-IJzOUXWSYujkBsq2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<p class="text-white font-bold text-sm italic">"Learning a language is a journey through its culture."</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-950 w-full border-t border-rose-100 dark:border-rose-900/30 flex flex-col md:flex-row justify-between items-center px-12 py-12 lg:ml-64 font-be-vietnam-pro text-xs uppercase tracking-widest text-rose-900 dark:text-rose-300">
+<div class="mb-4 md:mb-0">
+            © 2024 Zen Nihongo. All rights reserved.
+        </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 transition-colors underline-offset-4 hover:underline" href="#">Privacy Policy</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 transition-colors underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 transition-colors underline-offset-4 hover:underline" href="#">Help Center</a>
+<a class="text-slate-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 transition-colors underline-offset-4 hover:underline" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>

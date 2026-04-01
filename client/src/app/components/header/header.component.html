@@ -1,0 +1,53 @@
+<!-- ══════════════════════════════════════════════
+     ZEN EDITORIAL – TOP NAVIGATION BAR
+     ══════════════════════════════════════════════ -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm transition-all duration-300">
+  <div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+    <!-- Brand + Links -->
+    <div class="flex items-center gap-8">
+      <span class="text-2xl font-bold tracking-tighter text-primary font-headline select-none">Zen Editorial</span>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-6 font-headline font-medium tracking-tight text-sm">
+        <a routerLink="/dashboard" routerLinkActive="text-primary border-b-2 border-primary-container pb-0.5" 
+           class="text-on-surface-variant hover:text-primary transition-colors">Home</a>
+        <a routerLink="/grammar" routerLinkActive="text-primary border-b-2 border-primary-container pb-0.5"
+           class="text-on-surface-variant hover:text-primary transition-colors">Grammar</a>
+        <a routerLink="/decks" routerLinkActive="text-primary border-b-2 border-primary-container pb-0.5"
+           class="text-on-surface-variant hover:text-primary transition-colors">Flashcards</a>
+        <a routerLink="/countdown" routerLinkActive="text-primary border-b-2 border-primary-container pb-0.5"
+           class="text-on-surface-variant hover:text-primary transition-colors">JLPT Countdown</a>
+      </div>
+    </div>
+
+    <!-- Right Side Actions -->
+    <div class="flex items-center gap-6">
+      <!-- Search (Compact) -->
+      <div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/5 hover:border-outline-variant transition-all">
+        <span class="material-symbols-outlined text-outline text-lg">search</span>
+        <input type="text" placeholder="Tìm kiếm tài liệu..." 
+               class="bg-transparent border-none focus:outline-none ml-2 text-sm text-on-surface placeholder:text-outline/50 w-48">
+      </div>
+
+      <!-- Action Icons -->
+      <div class="flex items-center gap-4">
+        <button class="p-2.5 rounded-full hover:bg-primary-fixed/30 text-primary transition-all relative">
+          <span class="material-symbols-outlined">notifications</span>
+          <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+        </button>
+        
+        <div class="h-6 w-px bg-outline-variant/20 mx-1"></div>
+
+        <button class="flex items-center gap-3 p-1 pl-1 pr-4 rounded-full bg-surface-container hover:bg-surface-container-high transition-all">
+          <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-xs ring-1 ring-outline-variant/10 overflow-hidden">
+             <span class="material-symbols-outlined text-sm">person</span>
+          </div>
+          <span class="text-xs font-bold font-headline text-on-surface tracking-tight hidden sm:inline">Minh Alex</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Push content below fixed header -->
+<div class="h-16"></div>

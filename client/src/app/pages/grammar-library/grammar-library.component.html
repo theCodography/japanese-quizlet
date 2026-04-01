@@ -1,0 +1,276 @@
+<div class="px-6 md:px-10 py-10 max-w-7xl mx-auto">
+
+  <!-- ── Page Header ── -->
+  <div class="mb-10">
+    <div class="flex items-center gap-3 mb-2">
+      @if (selectedLevel()) {
+        <button
+          (click)="backToLevels()"
+          class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center
+                 text-on-surface-variant hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </button>
+      }
+      <p class="text-xs font-bold uppercase tracking-widest text-secondary">Thu vien</p>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight"
+        style="font-family: 'Plus Jakarta Sans', sans-serif;">
+      @if (selectedLevel()) {
+        Ngu phap {{ selectedLevel() }}
+      } @else {
+        Ngu Phap Tieng Nhat
+      }
+    </h1>
+    <p class="mt-2 text-on-surface-variant text-base" style="font-family: 'Be Vietnam Pro', sans-serif;">
+      @if (selectedLevel()) {
+        {{ getConfig(selectedLevel()).textbook }} - {{ filteredGrammar().length }} mau ngu phap
+      } @else {
+        Chon cap do de bat dau hoc ngu phap
+      }
+    </p>
+  </div>
+
+  <!-- ── Level Selection ── -->
+  @if (!selectedLevel()) {
+    @if (isLoading()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (_ of [1,2,3]; track _) {
+          <div class="rounded-2xl bg-surface-container-low animate-pulse h-56"></div>
+        }
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (level of levels(); track level.level) {
+          <div
+            (click)="selectLevel(level.level)"
+            class="group relative bg-white rounded-2xl border border-outline-variant/40
+                   shadow-[0_2px_16px_rgba(26,28,29,0.04)]
+                   hover:shadow-[0_12px_40px_rgba(134,78,90,0.12)]
+                   hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
+
+            <!-- Top gradient -->
+            <div class="h-1.5 w-full bg-gradient-to-r"
+                 [ngClass]="getConfig(level.level).gradient"></div>
+
+            <div class="p-8">
+              <!-- Level badge -->
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center mb-6 shadow-lg"
+                   [ngClass]="getConfig(level.level).gradient">
+                <span class="text-white text-2xl font-extrabold" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                  {{ level.level }}
+                </span>
+              </div>
+
+              <!-- Info -->
+              <h2 class="text-xl font-bold text-on-surface mb-1 group-hover:text-primary transition-colors"
+                  style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                JLPT {{ level.level }}
+              </h2>
+              <p class="text-sm text-on-surface-variant mb-4" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                {{ getConfig(level.level).textbook }}
+              </p>
+
+              <!-- Stats -->
+              <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1.5 text-on-surface-variant text-sm"
+                     style="font-family: 'Be Vietnam Pro', sans-serif;">
+                  <span class="material-symbols-outlined text-lg">menu_book</span>
+                  {{ level.count }} mau ngu phap
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <button
+                class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r text-white font-semibold text-sm
+                       transition-all duration-200 flex items-center justify-center gap-2"
+                [ngClass]="getConfig(level.level).gradient"
+                style="font-family: 'Be Vietnam Pro', sans-serif;">
+                <span class="material-symbols-outlined text-lg">school</span>
+                Xem ngu phap
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Empty state -->
+      @if (levels().length === 0) {
+        <div class="flex flex-col items-center justify-center py-24 text-center">
+          <div class="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-4xl text-primary">menu_book</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+            Chua co du lieu ngu phap
+          </h3>
+          <p class="text-on-surface-variant text-sm" style="font-family: 'Be Vietnam Pro', sans-serif;">
+            Vui long chay seed de nap du lieu ngu phap vao database.
+          </p>
+        </div>
+      }
+    }
+  }
+
+  <!-- ── Grammar List by Level ── -->
+  @if (selectedLevel()) {
+    <!-- Search bar -->
+    <div class="mb-8">
+      <div class="relative w-full md:w-96">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">search</span>
+        <input
+          type="text"
+          placeholder="Tim kiem ngu phap... (VD: て形, kha nang, dieu kien...)"
+          (input)="onSearch($event)"
+          class="w-full pl-10 pr-4 py-3 rounded-2xl bg-surface-container border border-outline-variant
+                 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+                 text-sm text-on-surface placeholder:text-outline transition-all"
+          style="font-family: 'Be Vietnam Pro', sans-serif;"
+        />
+      </div>
+    </div>
+
+    @if (isLoading()) {
+      <div class="space-y-4">
+        @for (_ of [1,2,3,4,5]; track _) {
+          <div class="rounded-2xl bg-surface-container-low animate-pulse h-24"></div>
+        }
+      </div>
+    } @else {
+      <!-- Empty search result -->
+      @if (filteredGrammar().length === 0) {
+        <div class="flex flex-col items-center justify-center py-16 text-center">
+          <span class="material-symbols-outlined text-5xl text-outline mb-4">search_off</span>
+          <p class="text-on-surface-variant text-sm" style="font-family: 'Be Vietnam Pro', sans-serif;">
+            Khong tim thay ngu phap phu hop voi "{{ searchQuery() }}"
+          </p>
+        </div>
+      }
+
+      <!-- Grouped by lesson -->
+      @for (lessonNum of lessonKeys(); track lessonNum) {
+        <div class="mb-8">
+          <!-- Lesson header -->
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center"
+                 [ngClass]="getConfig(selectedLevel()).gradient">
+              <span class="text-white text-sm font-bold">{{ lessonNum }}</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-on-surface" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                {{ getLessonLabel(lessonNum) }}
+              </h3>
+              <p class="text-xs text-on-surface-variant" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                {{ filteredGrouped()[lessonNum].length }} mau ngu phap
+              </p>
+            </div>
+          </div>
+
+          <!-- Grammar cards -->
+          <div class="space-y-3">
+            @for (grammar of filteredGrouped()[lessonNum]; track grammar.id) {
+              <div
+                class="bg-white rounded-2xl border border-outline-variant/40
+                       shadow-[0_1px_8px_rgba(26,28,29,0.03)]
+                       hover:shadow-[0_4px_20px_rgba(134,78,90,0.08)]
+                       transition-all duration-200 overflow-hidden">
+
+                <!-- Card header (always visible) -->
+                <button
+                  (click)="toggleExpand(grammar.id)"
+                  class="w-full px-6 py-4 flex items-start gap-4 text-left">
+
+                  <!-- Title area -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-1 flex-wrap">
+                      <h4 class="text-base font-bold text-on-surface"
+                          style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                        {{ grammar.title }}
+                      </h4>
+                    </div>
+                    <p class="text-sm text-primary font-medium mb-1" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                      {{ grammar.structure }}
+                    </p>
+                    <p class="text-sm text-on-surface-variant" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                      {{ grammar.meaning }}
+                    </p>
+                  </div>
+
+                  <!-- Expand icon -->
+                  <span class="material-symbols-outlined text-outline transition-transform duration-200 mt-1"
+                        [class.rotate-180]="expandedId() === grammar.id">
+                    expand_more
+                  </span>
+                </button>
+
+                <!-- Expanded detail -->
+                @if (expandedId() === grammar.id) {
+                  <div class="px-6 pb-5 border-t border-outline-variant/30 pt-4 space-y-4
+                              animate-[fadeIn_0.2s_ease-out]">
+
+                    <!-- Explanation -->
+                    @if (grammar.explanation) {
+                      <div class="bg-primary-fixed/30 rounded-xl p-4">
+                        <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Giai thich</p>
+                        <p class="text-sm text-on-surface leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                          {{ grammar.explanation }}
+                        </p>
+                      </div>
+                    }
+
+                    <!-- Examples -->
+                    <div>
+                      <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Vi du</p>
+                      <div class="space-y-2.5">
+                        <div class="flex items-start gap-2">
+                          <span class="w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-secondary text-[10px] font-bold">1</span>
+                          </span>
+                          <p class="text-sm text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                            {{ grammar.example }}
+                          </p>
+                        </div>
+                        @if (grammar.example2) {
+                          <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <span class="text-secondary text-[10px] font-bold">2</span>
+                            </span>
+                            <p class="text-sm text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                              {{ grammar.example2 }}
+                            </p>
+                          </div>
+                        }
+                        @if (grammar.example3) {
+                          <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <span class="text-secondary text-[10px] font-bold">3</span>
+                            </span>
+                            <p class="text-sm text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                              {{ grammar.example3 }}
+                            </p>
+                          </div>
+                        }
+                      </div>
+                    </div>
+
+                    <!-- Meta info -->
+                    <div class="flex items-center gap-3 pt-2">
+                      <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">
+                        {{ grammar.level }}
+                      </span>
+                      <span class="text-[11px] text-outline" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                        {{ grammar.textbook }}
+                        @if (grammar.lesson) {
+                          - Bai {{ grammar.lesson }}
+                        }
+                      </span>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    }
+  }
+
+</div>

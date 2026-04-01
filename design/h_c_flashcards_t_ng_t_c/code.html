@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zen Editorial - Flashcard Session</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#000767",
+              "surface": "#f9f9fb",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f9f9fb",
+              "primary-container": "#ffb7c5",
+              "primary-fixed": "#ffd9df",
+              "on-secondary-container": "#27308a",
+              "tertiary": "#00629d",
+              "primary": "#864e5a",
+              "inverse-surface": "#2f3132",
+              "on-primary-container": "#7b4551",
+              "tertiary-container": "#a0ceff",
+              "on-background": "#1a1c1d",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e2e2e4",
+              "surface-container-low": "#f3f3f5",
+              "on-error-container": "#93000a",
+              "outline": "#837375",
+              "tertiary-fixed": "#cfe5ff",
+              "secondary-fixed": "#e0e0ff",
+              "surface-container": "#eeeef0",
+              "surface-tint": "#864e5a",
+              "on-surface-variant": "#514345",
+              "on-secondary": "#ffffff",
+              "secondary": "#4c56af",
+              "on-tertiary-fixed": "#001d34",
+              "on-tertiary-container": "#00588e",
+              "primary-fixed-dim": "#fbb3c1",
+              "background": "#f9f9fb",
+              "surface-variant": "#e2e2e4",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#f0f0f2",
+              "on-tertiary-fixed-variant": "#004a78",
+              "on-surface": "#1a1c1d",
+              "outline-variant": "#d6c2c4",
+              "secondary-container": "#959efd",
+              "surface-dim": "#d9dadc",
+              "on-primary-fixed-variant": "#6b3743",
+              "on-secondary-fixed-variant": "#343d96",
+              "on-primary-fixed": "#360c19",
+              "inverse-primary": "#fbb3c1",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e8e8ea",
+              "secondary-fixed-dim": "#bdc2ff",
+              "tertiary-fixed-dim": "#99cbff",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar (Shared Component) -->
+<!-- Suppressed navigation shell for task-focused session screen per rules: suppression for focused journeys. -->
+<nav class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-rose-900 dark:text-rose-100 font-headline">Zen Editorial</span>
+<div class="hidden md:flex gap-6 font-['Plus_Jakarta_Sans'] font-medium tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 hover:text-rose-700 dark:hover:text-rose-300 transition-colors" href="#">Home</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-rose-700 dark:hover:text-rose-300 transition-colors" href="#">Grammar</a>
+<a class="text-rose-900 dark:text-rose-100 border-b-2 border-rose-400 dark:border-rose-300 pb-1" href="#">Flashcards</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-rose-700 dark:hover:text-rose-300 transition-colors" href="#">JLPT Countdown</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-rose-50/50 dark:hover:bg-rose-900/20 rounded-full transition-all duration-300 text-rose-900 dark:text-rose-200">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-20 px-6 py-8 flex flex-col items-center justify-center max-w-5xl mx-auto w-full">
+<!-- Session Progress Header -->
+<div class="w-full max-w-2xl mb-12">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="font-headline font-bold text-3xl text-primary tracking-tight">Daily Review</span>
+<p class="text-on-surface-variant text-sm mt-1">14 cards remaining in this session</p>
+</div>
+<div class="text-right">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold">Accuracy: 92%</span>
+</div>
+</div>
+<!-- Progress Bar Container -->
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Flashcard Container (Asymmetric Layout Focus) -->
+<div class="relative w-full max-w-3xl aspect-[16/10] group perspective-1000">
+<!-- Background Layer (Stacking Depth) -->
+<div class="absolute inset-0 bg-surface-container-low translate-x-4 translate-y-4 rounded-xl -z-10"></div>
+<!-- Main Card (Surface Container Lowest for lift) -->
+<div class="relative w-full h-full bg-surface-container-lowest rounded-xl shadow-[0_32px_64px_rgba(26,28,29,0.04)] flex flex-col overflow-hidden">
+<!-- Card Header/Context -->
+<div class="p-8 flex justify-between items-start">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold uppercase tracking-widest rounded-full">JLPT N3</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">Vocabulary</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<!-- Front of Card: Kanji (Central & Massive) -->
+<div class="flex-1 flex flex-col items-center justify-center px-12 text-center">
+<div class="relative">
+<!-- Decorative element partially off-grid for editorial feel -->
+<div class="absolute -top-12 -left-12 text-9xl font-black text-primary/5 select-none pointer-events-none">学</div>
+<h1 class="text-8xl md:text-9xl font-bold text-on-surface tracking-tighter mb-4 font-headline leading-tight">学習</h1>
+<p class="text-2xl text-secondary font-medium tracking-wide">がくしゅう</p>
+</div>
+</div>
+<!-- Interaction Prompt -->
+<div class="p-8 flex justify-center border-t border-outline-variant/10">
+<button class="group flex items-center gap-3 text-on-surface-variant hover:text-primary transition-all duration-300">
+<span class="text-sm font-medium tracking-tight">Tap card to reveal meaning</span>
+<span class="material-symbols-outlined text-lg group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Hidden State: Reveal Content (Example of Layering for Session Logic) -->
+<!-- In a real implementation, this would replace the content above or be on the 'back' of a flip -->
+<div class="hidden w-full max-w-3xl mt-8 p-10 bg-surface-bright rounded-xl shadow-sm border border-outline-variant/5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<h3 class="font-label text-xs uppercase tracking-widest text-outline mb-4">English Meaning</h3>
+<p class="text-2xl font-bold text-on-surface leading-snug">Study, learning, scholarship</p>
+</div>
+<div>
+<h3 class="font-label text-xs uppercase tracking-widest text-outline mb-4">Context / Example</h3>
+<p class="text-lg text-on-surface leading-relaxed mb-2">新しい言語を<span class="text-primary font-bold">学習</span>するのは楽しい。</p>
+<p class="text-sm text-on-surface-variant italic">Learning a new language is fun.</p>
+</div>
+</div>
+</div>
+<!-- Interactive Controls (The Anchors) -->
+<div class="mt-16 w-full max-w-2xl grid grid-cols-3 gap-6">
+<!-- Hard Button -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-lg bg-surface-container-low hover:bg-error-container/20 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-lowest text-error shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold text-on-surface">Hard</span>
+<span class="block text-[10px] text-outline-variant font-medium">Review in 1m</span>
+</div>
+</button>
+<!-- Good Button (The Primary Focus) -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-lg bg-gradient-to-br from-primary to-primary-container text-on-primary shadow-[0_20px_40px_rgba(134,78,90,0.15)] hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold">Good</span>
+<span class="block text-[10px] text-white/80 font-medium">Review in 1d</span>
+</div>
+</button>
+<!-- Easy Button -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-lg bg-surface-container-low hover:bg-secondary-container/10 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-lowest text-secondary shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold text-on-surface">Easy</span>
+<span class="block text-[10px] text-outline-variant font-medium">Review in 4d</span>
+</div>
+</button>
+</div>
+<!-- Hotkey Legend -->
+<div class="mt-12 flex gap-8">
+<div class="flex items-center gap-2 opacity-40">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-mono text-[10px] font-bold border border-outline/10">1</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Hard</span>
+</div>
+<div class="flex items-center gap-2 opacity-40">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-mono text-[10px] font-bold border border-outline/10">SPACE</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Reveal</span>
+</div>
+<div class="flex items-center gap-2 opacity-40">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-mono text-[10px] font-bold border border-outline/10">2</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Good</span>
+</div>
+<div class="flex items-center gap-2 opacity-40">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-mono text-[10px] font-bold border border-outline/10">3</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Easy</span>
+</div>
+</div>
+</main>
+<!-- Side Curriculum Peek (Asymmetric Balance Component) -->
+<aside class="fixed left-0 top-0 h-screen w-16 hover:w-64 group transition-all duration-500 bg-slate-50 dark:bg-slate-950 pt-20 z-40 overflow-hidden border-r border-outline-variant/5">
+<div class="flex flex-col gap-4 py-6 px-4">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0">
+<img alt="User" class="w-full h-full object-cover rounded-full" data-alt="Close up portrait of a young woman with a focused expression, soft natural indoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtzBxkOn3nPO2sIBoMbNWIwEMqN6USH8bKeRznpCmeb-FWz8tWQ7AMrPxmlFYWAaIC1tbmPVV5VKWGxcHssDLtNQTjKDKBWwAU9U6b73dd89d1cWIT_WPlR1QHFWJjTeFjf0Sk2V07gEE_abUlsRDsvfRXC6kwotKxr5oGHCqPyEejb1RRdLobzzAdigIO-20mfTyYppu_QgHAcOIcw3D4q6xSl67Or9uCET0FOJcTXM6v7WbDnoqkWUBqfMNjxCYBrJqoUd1TrPNZ"/>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+<p class="text-xs font-bold text-rose-900">Alex Tan</p>
+<p class="text-[10px] text-slate-500">Master Level: N3</p>
+</div>
+</div>
+<a class="flex items-center gap-4 p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="filter_1">filter_1</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold">JLPT N5</span>
+</a>
+<a class="flex items-center gap-4 p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="filter_2">filter_2</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold">JLPT N4</span>
+</a>
+<a class="flex items-center gap-4 p-2 bg-rose-100 dark:bg-rose-900/40 text-rose-900 dark:text-rose-100 font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="filter_3">filter_3</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm">JLPT N3</span>
+</a>
+<div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-full py-3 bg-secondary text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
+                    Daily Stats
+                </button>
+</div>
+</div>
+</aside>
+<!-- Footer (Shared Component) -->
+<footer class="w-full mt-auto bg-slate-100 dark:bg-slate-950 font-['Be_Vietnam_Pro'] text-xs uppercase tracking-widest">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6">
+<span class="text-lg font-black text-rose-900 dark:text-rose-100">Zen Editorial</span>
+<div class="flex gap-8 text-slate-500 dark:text-slate-400">
+<a class="hover:text-rose-600 dark:hover:text-rose-400 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="hover:text-rose-600 dark:hover:text-rose-400 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="hover:text-rose-600 dark:hover:text-rose-400 transition-opacity opacity-80 hover:opacity-100" href="#">Support</a>
+<a class="hover:text-rose-600 dark:hover:text-rose-400 transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+<span class="text-slate-500 dark:text-slate-400 opacity-60">© 2024 Zen Editorial Japanese. All rights reserved.</span>
+</div>
+</footer>
+</body></html>
