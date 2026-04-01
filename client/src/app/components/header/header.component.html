@@ -26,7 +26,7 @@
       <button (click)="toggleTheme()"
               class="p-2.5 rounded-full hover:bg-surface-container-high text-on-surface-variant
                      hover:text-primary transition-all duration-200"
-              [title]="themeService.isDark() ? 'Chuyen sang Light mode' : 'Chuyen sang Dark mode'">
+              [title]="themeService.isDark() ? 'Chuyển sang Light mode' : 'Chuyển sang Dark mode'">
         <span class="material-symbols-outlined text-xl">
           {{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}
         </span>
@@ -85,7 +85,7 @@
                       class="w-full flex items-center gap-3 px-5 py-3 text-sm text-error
                              hover:bg-error-container/20 transition-colors">
                 <span class="material-symbols-outlined text-lg">logout</span>
-                Dang xuat
+                Đăng xuất
               </button>
             </div>
           </div>

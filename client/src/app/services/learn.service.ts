@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Deck } from '../models/deck.model';
 
@@ -13,7 +14,7 @@ export interface ApiResponse<T> {
   providedIn: 'root'
 })
 export class LearnService {
-  private apiUrl = 'http://localhost:3000/api/learn';
+  private apiUrl = `${environment.apiUrl}/learn`;
 
   constructor(private http: HttpClient) {}
 

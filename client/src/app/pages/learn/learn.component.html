@@ -31,7 +31,7 @@
       </div>
       <div class="opacity-0 group-hover/aside:opacity-100 transition-opacity duration-300 whitespace-nowrap">
         <p class="text-xs font-bold text-primary">{{ deck()?.title || 'Deck' }}</p>
-        <p class="text-[10px] text-on-surface-variant">Dang hoc</p>
+        <p class="text-[10px] text-on-surface-variant">Đang học</p>
       </div>
     </div>
     <a routerLink="/dashboard" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
@@ -58,7 +58,7 @@
   @if (isLoading()) {
     <div class="flex-1 flex flex-col items-center justify-center mt-20">
       <div class="w-12 h-12 border-4 border-primary-container border-t-primary rounded-full animate-spin"></div>
-      <p class="mt-4 text-on-surface-variant font-medium animate-pulse" style="font-family: 'Be Vietnam Pro', sans-serif;">Dang chuan bi the hoc...</p>
+      <p class="mt-4 text-on-surface-variant font-medium animate-pulse" style="font-family: 'Be Vietnam Pro', sans-serif;">Đang chuẩn bị thẻ học...</p>
     </div>
   }
 
@@ -72,7 +72,7 @@
           <div>
             <span class="font-bold text-3xl text-primary tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Daily Review</span>
             <p class="text-on-surface-variant text-sm mt-1" style="font-family: 'Be Vietnam Pro', sans-serif;">
-              {{ cards().length - currentIndex() }} the con lai trong phien nay
+              {{ cards().length - currentIndex() }} thẻ còn lại trong phiên này
             </p>
           </div>
           <div class="text-right">
@@ -137,14 +137,14 @@
           @if (isRevealed()) {
             <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 px-10 py-6 items-center">
               <div>
-                <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Nghia</h3>
+                <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Nghĩa</h3>
                 <p class="text-3xl font-bold text-on-surface leading-snug" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                   {{ currentCard()?.definition }}
                 </p>
               </div>
               @if (currentCard()?.example) {
                 <div>
-                  <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Vi du</h3>
+                  <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Ví dụ</h3>
                   <p class="text-lg text-on-surface leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
                     {{ currentCard()?.example }}
                   </p>
@@ -157,7 +157,7 @@
           @if (!isRevealed()) {
             <div class="py-5 flex justify-center border-t border-outline-variant/20 flex-shrink-0">
               <button class="group/reveal flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all duration-300">
-                <span class="text-sm font-medium tracking-tight" style="font-family: 'Be Vietnam Pro', sans-serif;">Nhan de xem nghia</span>
+                <span class="text-sm font-medium tracking-tight" style="font-family: 'Be Vietnam Pro', sans-serif;">Nhấn để xem nghĩa</span>
                 <span class="material-symbols-outlined text-lg group-hover/reveal:translate-y-1 transition-transform">expand_more</span>
               </button>
             </div>
@@ -176,7 +176,7 @@
             </div>
             <div class="text-center">
               <span class="block text-sm font-bold text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">Hard</span>
-              <span class="block text-[10px] text-outline font-medium">On lai sau 1 phut</span>
+              <span class="block text-[10px] text-outline font-medium">Ôn lại sau 1 phút</span>
             </div>
           </button>
 
@@ -189,7 +189,7 @@
             </div>
             <div class="text-center">
               <span class="block text-sm font-bold">Good</span>
-              <span class="block text-[10px] text-on-primary/80 font-medium">On lai sau 1 ngay</span>
+              <span class="block text-[10px] text-on-primary/80 font-medium">Ôn lại sau 1 ngày</span>
             </div>
           </button>
 
@@ -201,7 +201,7 @@
             </div>
             <div class="text-center">
               <span class="block text-sm font-bold text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">Easy</span>
-              <span class="block text-[10px] text-outline font-medium">On lai sau 4 ngay</span>
+              <span class="block text-[10px] text-outline font-medium">Ôn lại sau 4 ngày</span>
             </div>
           </button>
         </div>
@@ -214,7 +214,7 @@
                   class="px-8 py-3 zen-gradient text-on-primary font-bold rounded-full hover:-translate-y-0.5 transition-all
                          shadow-[0_8px_24px_rgba(251,179,193,0.2)]"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Xem nghia
+            Xem nghĩa
           </button>
         </div>
       }
@@ -254,10 +254,10 @@
           <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1">check_circle</span>
         </div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface mb-4 tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-          Tuyet voi!
+          Tuyệt vời!
         </h2>
         <p class="text-on-surface-variant mb-3 text-lg leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
-          Ban da hoan thanh toan bo
+          Bạn đã hoàn thành toàn bộ
         </p>
         <span class="font-bold text-primary bg-primary-container/30 px-3 py-1.5 rounded-full inline-block mb-8 text-base" style="font-family: 'Be Vietnam Pro', sans-serif;">
           "{{ deck()?.title }}"
@@ -267,13 +267,13 @@
                   class="w-full py-4 zen-gradient text-on-primary font-bold rounded-2xl transition-all text-base
                          shadow-[0_8px_24px_rgba(251,179,193,0.2)] hover:-translate-y-0.5"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            On tap lai tu dau
+            Ôn tập lại từ đầu
           </button>
           <button (click)="goBack()"
                   class="w-full py-4 bg-surface-container-high hover:bg-surface-container-highest
                          text-on-surface-variant font-bold rounded-2xl transition-all text-base border border-outline-variant/20"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Tro ve Dashboard
+            Trở về Dashboard
           </button>
         </div>
       </div>

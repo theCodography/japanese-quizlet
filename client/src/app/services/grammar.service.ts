@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { GrammarLesson, GrammarLevel, GrammarByLevelData } from '../models/grammar.model';
 import { ApiResponse } from './learn.service';
@@ -7,7 +8,7 @@ import { ApiResponse } from './learn.service';
 @Injectable({ providedIn: 'root' })
 export class GrammarService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000/api/grammar';
+  private baseUrl = `${environment.apiUrl}/grammar`;
 
   getAllGrammar(params?: { level?: string; search?: string }): Observable<ApiResponse<GrammarLesson[]>> {
     const queryParams: any = {};

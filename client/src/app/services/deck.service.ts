@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Deck } from '../models/deck.model';
 import { Card } from '../models/card.model';
@@ -8,7 +9,7 @@ import { ApiResponse } from './learn.service';
 @Injectable({ providedIn: 'root' })
 export class DeckService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000/api/decks';
+  private baseUrl = `${environment.apiUrl}/decks`;
 
   getAllDecks(): Observable<ApiResponse<Deck[]>> {
     return this.http.get<ApiResponse<Deck[]>>(this.baseUrl);

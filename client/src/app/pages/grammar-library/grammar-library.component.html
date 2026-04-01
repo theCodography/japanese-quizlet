@@ -11,21 +11,21 @@
           <span class="material-symbols-outlined text-xl">arrow_back</span>
         </button>
       }
-      <p class="text-xs font-bold uppercase tracking-widest text-secondary">Thu vien</p>
+      <p class="text-xs font-bold uppercase tracking-widest text-secondary">Thư viện</p>
     </div>
     <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight"
         style="font-family: 'Plus Jakarta Sans', sans-serif;">
       @if (selectedLevel()) {
-        Ngu phap {{ selectedLevel() }}
+        Ngữ pháp {{ selectedLevel() }}
       } @else {
-        Ngu Phap Tieng Nhat
+        Ngữ Pháp Tiếng Nhật
       }
     </h1>
     <p class="mt-2 text-on-surface-variant text-base" style="font-family: 'Be Vietnam Pro', sans-serif;">
       @if (selectedLevel()) {
-        {{ getConfig(selectedLevel()).textbook }} - {{ filteredGrammar().length }} mau ngu phap
+        {{ getConfig(selectedLevel()).textbook }} - {{ filteredGrammar().length }} mẫu ngữ pháp
       } @else {
-        Chon cap do de bat dau hoc ngu phap
+        Chọn cấp độ để bắt đầu học ngữ pháp
       }
     </p>
   </div>
@@ -75,7 +75,7 @@
                 <div class="flex items-center gap-1.5 text-on-surface-variant text-sm"
                      style="font-family: 'Be Vietnam Pro', sans-serif;">
                   <span class="material-symbols-outlined text-lg">menu_book</span>
-                  {{ level.count }} mau ngu phap
+                  {{ level.count }} mẫu ngữ pháp
                 </div>
               </div>
 
@@ -86,7 +86,7 @@
                 [ngClass]="getConfig(level.level).gradient"
                 style="font-family: 'Be Vietnam Pro', sans-serif;">
                 <span class="material-symbols-outlined text-lg">school</span>
-                Xem ngu phap
+                Xem ngữ pháp
               </button>
             </div>
           </div>
@@ -100,10 +100,10 @@
             <span class="material-symbols-outlined text-4xl text-primary">menu_book</span>
           </div>
           <h3 class="text-xl font-bold text-on-surface mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-            Chua co du lieu ngu phap
+            Chưa có dữ liệu ngữ pháp
           </h3>
           <p class="text-on-surface-variant text-sm" style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Vui long chay seed de nap du lieu ngu phap vao database.
+            Vui lòng chạy seed để nạp dữ liệu ngữ pháp vào database.
           </p>
         </div>
       }
@@ -118,7 +118,7 @@
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">search</span>
         <input
           type="text"
-          placeholder="Tim kiem ngu phap... (VD: て形, kha nang, dieu kien...)"
+          placeholder="Tìm kiếm ngữ pháp... (VD: て形, khả năng, điều kiện...)"
           (input)="onSearch($event)"
           class="w-full pl-10 pr-4 py-3 rounded-2xl bg-surface-container border border-outline-variant
                  focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
@@ -140,7 +140,7 @@
         <div class="flex flex-col items-center justify-center py-16 text-center">
           <span class="material-symbols-outlined text-5xl text-outline mb-4">search_off</span>
           <p class="text-on-surface-variant text-sm" style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Khong tim thay ngu phap phu hop voi "{{ searchQuery() }}"
+            Không tìm thấy ngữ pháp phù hợp với "{{ searchQuery() }}"
           </p>
         </div>
       }
@@ -159,7 +159,7 @@
                 {{ getLessonLabel(lessonNum) }}
               </h3>
               <p class="text-xs text-on-surface-variant" style="font-family: 'Be Vietnam Pro', sans-serif;">
-                {{ filteredGrouped()[lessonNum].length }} mau ngu phap
+                {{ filteredGrouped()[lessonNum].length }} mẫu ngữ pháp
               </p>
             </div>
           </div>
@@ -209,7 +209,7 @@
                     <!-- Explanation -->
                     @if (grammar.explanation) {
                       <div class="bg-primary-fixed/30 rounded-xl p-4">
-                        <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Giai thich</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Giải thích</p>
                         <p class="text-sm text-on-surface leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
                           {{ grammar.explanation }}
                         </p>
@@ -218,7 +218,7 @@
 
                     <!-- Examples -->
                     <div>
-                      <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Vi du</p>
+                      <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Ví dụ</p>
                       <div class="space-y-2.5">
                         <div class="flex items-start gap-2">
                           <span class="w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -259,7 +259,7 @@
                       <span class="text-[11px] text-outline" style="font-family: 'Be Vietnam Pro', sans-serif;">
                         {{ grammar.textbook }}
                         @if (grammar.lesson) {
-                          - Bai {{ grammar.lesson }}
+                          - Bài {{ grammar.lesson }}
                         }
                       </span>
                     </div>
