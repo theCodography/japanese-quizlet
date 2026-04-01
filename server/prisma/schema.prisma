@@ -1,0 +1,96 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  decks        Deck[]
+  progress     UserProgress?
+  studySessions StudySession[]
+}
+
+model UserProgress {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  cardsStudied   Int      @default(0)
+  lessonsCompleted Int    @default(0)
+  experiencePoints Int    @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Deck {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  isPublic    Boolean  @default(false)
+  creatorId   String
+  creator     User     @relation(fields: [creatorId], references: [id])
+  cards       Card[]
+  studySessions StudySession[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Card {
+  id         String   @id @default(uuid())
+  deckId     String
+  deck       Deck     @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  term       String   // Mặt trước
+  definition String   // Mặt sau
+  example    String?  // Ví dụ
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model StudySession {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  deckId    String
+  deck      Deck     @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  score     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model GrammarLesson {
+  id          String   @id @default(uuid())
+  title       String
+  structure   String
+  meaning     String
+  explanation String?  // Giải thích chi tiết
+  example     String   // Ví dụ chính
+  example2    String?  // Ví dụ phụ
+  example3    String?  // Ví dụ phụ 2
+  level       String   // N5, N4, N3
+  textbook    String   // Minna no Nihongo 1, Minna no Nihongo 2, Shinkanzen N3
+  lesson      Int?     // Số bài (VD: bài 1, bài 2...)
+  order       Int      @default(0) // Thứ tự hiển thị
+  createdAt   DateTime @default(now())
+
+  @@index([level])
+  @@index([textbook, lesson])
+}
+
+model VocabularyLesson {
+  id        String   @id @default(uuid())
+  word      String
+  reading   String
+  meaning   String
+  example   String?
+  audioUrl  String?
+  level     String   // VD: N5, N4
+  createdAt DateTime @default(now())
+}

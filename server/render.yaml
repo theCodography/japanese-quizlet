@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: japan-quizlet-api
+    runtime: node
+    region: singapore  # Gần VN nhất
+    plan: free
+    rootDir: server
+    buildCommand: npm install && npm run build && npx prisma generate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        generateValue: false
+        # Render tự inject PORT, không cần set
+      - key: DATABASE_URL
+        sync: false  # Điền tay trên Render dashboard
+      - key: DIRECT_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true  # Render tự sinh random string
+      - key: ALLOWED_ORIGINS
+        sync: false  # Điền URL Vercel sau khi deploy frontend
