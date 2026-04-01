@@ -1,6 +1,6 @@
 /* ============================================================
-   Global Styles – Japan Quizlet
-   Design System: "The Zen Editorial"
+   Global Styles – Kouki Japanese
+   Design System: Light (Zen Editorial) + Dark (Nocturnal Atelier)
    ============================================================ */
 @import "tailwindcss";
 
@@ -8,85 +8,209 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-/* ── Zen Editorial Color Tokens (Tailwind v4 CSS Variables) ── */
+/* ── Theme-agnostic tokens registered in Tailwind ── */
 @theme {
-  /* Fonts */
   --font-headline: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Be Vietnam Pro', sans-serif;
 
-  /* Primary – Cherry Blossom/Rose */
-  --color-primary:                #864e5a;
-  --color-on-primary:             #ffffff;
-  --color-primary-container:      #ffb7c5;
-  --color-primary-fixed:          #ffd9df;
-  --color-primary-fixed-dim:      #fbb3c1;
-  --color-on-primary-fixed:       #360c19;
-  --color-on-primary-container:   #7b4551;
-  --color-on-primary-fixed-variant:#6b3743;
-  --color-inverse-primary:        #fbb3c1;
+  --color-primary:                var(--t-primary);
+  --color-on-primary:             var(--t-on-primary);
+  --color-primary-container:      var(--t-primary-container);
+  --color-primary-container-dim:  var(--t-primary-container-dim);
+  --color-primary-fixed:          var(--t-primary-fixed);
+  --color-primary-fixed-dim:      var(--t-primary-fixed-dim);
+  --color-on-primary-fixed:       var(--t-on-primary-fixed);
+  --color-on-primary-container:   var(--t-on-primary-container);
+  --color-on-primary-fixed-variant: var(--t-on-primary-fixed-variant);
+  --color-inverse-primary:        var(--t-inverse-primary);
 
-  /* Secondary – Deep Indigo */
-  --color-secondary:              #4c56af;
-  --color-on-secondary:           #ffffff;
-  --color-secondary-container:    #959efd;
-  --color-secondary-fixed:        #e0e0ff;
-  --color-secondary-fixed-dim:    #bdc2ff;
-  --color-on-secondary-fixed:     #000767;
-  --color-on-secondary-container: #27308a;
-  --color-on-secondary-fixed-variant: #343d96;
+  --color-secondary:              var(--t-secondary);
+  --color-on-secondary:           var(--t-on-secondary);
+  --color-secondary-container:    var(--t-secondary-container);
+  --color-secondary-fixed:        var(--t-secondary-fixed);
+  --color-secondary-fixed-dim:    var(--t-secondary-fixed-dim);
+  --color-on-secondary-fixed:     var(--t-on-secondary-fixed);
+  --color-on-secondary-container: var(--t-on-secondary-container);
+  --color-on-secondary-fixed-variant: var(--t-on-secondary-fixed-variant);
 
-  /* Tertiary */
-  --color-tertiary:               #00629d;
-  --color-on-tertiary:            #ffffff;
-  --color-tertiary-container:     #a0ceff;
-  --color-tertiary-fixed:         #cfe5ff;
-  --color-tertiary-fixed-dim:     #99cbff;
-  --color-on-tertiary-fixed:      #001d34;
-  --color-on-tertiary-container:  #00588e;
-  --color-on-tertiary-fixed-variant: #004a78;
+  --color-tertiary:               var(--t-tertiary);
+  --color-on-tertiary:            var(--t-on-tertiary);
+  --color-tertiary-container:     var(--t-tertiary-container);
+  --color-tertiary-fixed:         var(--t-tertiary-fixed);
+  --color-tertiary-fixed-dim:     var(--t-tertiary-fixed-dim);
+  --color-on-tertiary-fixed:      var(--t-on-tertiary-fixed);
+  --color-on-tertiary-container:  var(--t-on-tertiary-container);
+  --color-on-tertiary-fixed-variant: var(--t-on-tertiary-fixed-variant);
 
-  /* Surface Hierarchy */
-  --color-surface:                #f9f9fb;
-  --color-surface-bright:         #f9f9fb;
-  --color-surface-dim:            #d9dadc;
-  --color-surface-tint:           #864e5a;
-  --color-surface-variant:        #e2e2e4;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f3f5;
-  --color-surface-container:      #eeeef0;
-  --color-surface-container-high: #e8e8ea;
-  --color-surface-container-highest: #e2e2e4;
-  --color-on-surface:             #1a1c1d;
-  --color-on-surface-variant:     #514345;
-  --color-inverse-surface:        #2f3132;
-  --color-inverse-on-surface:     #f0f0f2;
+  --color-surface:                var(--t-surface);
+  --color-surface-bright:         var(--t-surface-bright);
+  --color-surface-dim:            var(--t-surface-dim);
+  --color-surface-tint:           var(--t-surface-tint);
+  --color-surface-variant:        var(--t-surface-variant);
+  --color-surface-container-lowest: var(--t-surface-container-lowest);
+  --color-surface-container-low:  var(--t-surface-container-low);
+  --color-surface-container:      var(--t-surface-container);
+  --color-surface-container-high: var(--t-surface-container-high);
+  --color-surface-container-highest: var(--t-surface-container-highest);
+  --color-on-surface:             var(--t-on-surface);
+  --color-on-surface-variant:     var(--t-on-surface-variant);
+  --color-inverse-surface:        var(--t-inverse-surface);
+  --color-inverse-on-surface:     var(--t-inverse-on-surface);
 
-  /* Background */
-  --color-background:             #f9f9fb;
-  --color-on-background:          #1a1c1d;
+  --color-background:             var(--t-background);
+  --color-on-background:          var(--t-on-background);
 
-  /* Outline */
-  --color-outline:                #837375;
-  --color-outline-variant:        #d6c2c4;
+  --color-outline:                var(--t-outline);
+  --color-outline-variant:        var(--t-outline-variant);
 
-  /* Error */
-  --color-error:                  #ba1a1a;
-  --color-on-error:               #ffffff;
-  --color-error-container:        #ffdad6;
-  --color-on-error-container:     #93000a;
+  --color-error:                  var(--t-error);
+  --color-on-error:               var(--t-on-error);
+  --color-error-container:        var(--t-error-container);
+  --color-on-error-container:     var(--t-on-error-container);
 
-  /* Border Radius */
-  --radius-DEFAULT: 1rem;
+  --radius-DEFAULT: 1.5rem;
   --radius-lg:      2rem;
   --radius-xl:      3rem;
   --radius-full:    9999px;
 }
 
+/* ════════════════════════════════════════════════
+   DARK THEME (default) – Nocturnal Atelier
+   ════════════════════════════════════════════════ */
+:root,
+:root[data-theme="dark"] {
+  --t-primary:                #FBB3C1;
+  --t-on-primary:             #4A1D26;
+  --t-primary-container:      #6B3743;
+  --t-primary-container-dim:  #5D3F45;
+  --t-primary-fixed:          #FFD9DF;
+  --t-primary-fixed-dim:      #FBB3C1;
+  --t-on-primary-fixed:       #360c19;
+  --t-on-primary-container:   #FFD9DF;
+  --t-on-primary-fixed-variant:#6b3743;
+  --t-inverse-primary:        #864E5A;
+
+  --t-secondary:              #959EFD;
+  --t-on-secondary:           #000767;
+  --t-secondary-container:    #27308A;
+  --t-secondary-fixed:        #e0e0ff;
+  --t-secondary-fixed-dim:    #bdc2ff;
+  --t-on-secondary-fixed:     #000767;
+  --t-on-secondary-container: #E0E0FF;
+  --t-on-secondary-fixed-variant: #343d96;
+
+  --t-tertiary:               #99CBFF;
+  --t-on-tertiary:            #003354;
+  --t-tertiary-container:     #004A78;
+  --t-tertiary-fixed:         #cfe5ff;
+  --t-tertiary-fixed-dim:     #99cbff;
+  --t-on-tertiary-fixed:      #001d34;
+  --t-on-tertiary-container:  #CFE5FF;
+  --t-on-tertiary-fixed-variant: #004a78;
+
+  --t-surface:                #1A1C2E;
+  --t-surface-bright:         #2A2C42;
+  --t-surface-dim:            #121321;
+  --t-surface-tint:           #FBB3C1;
+  --t-surface-variant:        #43465B;
+  --t-surface-container-lowest: #0F101D;
+  --t-surface-container-low:  #1E2033;
+  --t-surface-container:      #26283D;
+  --t-surface-container-high: #2E3048;
+  --t-surface-container-highest: #373954;
+  --t-on-surface:             #E2E2E6;
+  --t-on-surface-variant:     #A1A1B5;
+  --t-inverse-surface:        #E2E2E6;
+  --t-inverse-on-surface:     #1A1C2E;
+
+  --t-background:             #121321;
+  --t-on-background:          #E2E2E6;
+
+  --t-outline:                #4B4C5F;
+  --t-outline-variant:        #373954;
+
+  --t-error:                  #FFB4AB;
+  --t-on-error:               #690005;
+  --t-error-container:        #93000A;
+  --t-on-error-container:     #FFDAD6;
+
+  --t-zen-gradient-from:      #FBB3C1;
+  --t-zen-gradient-to:        #FF8EA5;
+  --t-glass-bg:               rgba(26, 28, 46, 0.6);
+  --t-glass-border:           rgba(251, 179, 193, 0.1);
+}
+
+/* ════════════════════════════════════════════════
+   LIGHT THEME – Zen Editorial
+   ════════════════════════════════════════════════ */
+:root[data-theme="light"] {
+  --t-primary:                #864E5A;
+  --t-on-primary:             #ffffff;
+  --t-primary-container:      #FFB7C5;
+  --t-primary-container-dim:  #E8A0AD;
+  --t-primary-fixed:          #FFD9DF;
+  --t-primary-fixed-dim:      #FBB3C1;
+  --t-on-primary-fixed:       #360c19;
+  --t-on-primary-container:   #7B4551;
+  --t-on-primary-fixed-variant:#6b3743;
+  --t-inverse-primary:        #FBB3C1;
+
+  --t-secondary:              #4C56AF;
+  --t-on-secondary:           #ffffff;
+  --t-secondary-container:    #959EFD;
+  --t-secondary-fixed:        #e0e0ff;
+  --t-secondary-fixed-dim:    #bdc2ff;
+  --t-on-secondary-fixed:     #000767;
+  --t-on-secondary-container: #27308A;
+  --t-on-secondary-fixed-variant: #343d96;
+
+  --t-tertiary:               #00629D;
+  --t-on-tertiary:            #ffffff;
+  --t-tertiary-container:     #A0CEFF;
+  --t-tertiary-fixed:         #cfe5ff;
+  --t-tertiary-fixed-dim:     #99cbff;
+  --t-on-tertiary-fixed:      #001d34;
+  --t-on-tertiary-container:  #00588E;
+  --t-on-tertiary-fixed-variant: #004a78;
+
+  --t-surface:                #F9F9FB;
+  --t-surface-bright:         #F9F9FB;
+  --t-surface-dim:            #D9DADC;
+  --t-surface-tint:           #864E5A;
+  --t-surface-variant:        #E2E2E4;
+  --t-surface-container-lowest: #FFFFFF;
+  --t-surface-container-low:  #F3F3F5;
+  --t-surface-container:      #EEEEF0;
+  --t-surface-container-high: #E8E8EA;
+  --t-surface-container-highest: #E2E2E4;
+  --t-on-surface:             #1A1C1D;
+  --t-on-surface-variant:     #514345;
+  --t-inverse-surface:        #2F3132;
+  --t-inverse-on-surface:     #F0F0F2;
+
+  --t-background:             #F9F9FB;
+  --t-on-background:          #1A1C1D;
+
+  --t-outline:                #837375;
+  --t-outline-variant:        #D6C2C4;
+
+  --t-error:                  #BA1A1A;
+  --t-on-error:               #ffffff;
+  --t-error-container:        #FFDAD6;
+  --t-on-error-container:     #93000A;
+
+  --t-zen-gradient-from:      #864E5A;
+  --t-zen-gradient-to:        #FFB7C5;
+  --t-glass-bg:               rgba(249, 249, 251, 0.7);
+  --t-glass-border:           rgba(134, 78, 90, 0.1);
+}
+
 /* ── Global Base Reset ── */
 body {
   font-family: var(--font-body);
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
+  background-color: var(--t-background);
+  color: var(--t-on-surface);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -102,3 +226,19 @@ h1, h2, h3, h4, h5, h6 {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ── Theme-aware Utilities ── */
+.zen-gradient {
+  background: linear-gradient(135deg, var(--t-zen-gradient-from) 0%, var(--t-zen-gradient-to) 100%);
+}
+
+.glass-panel {
+  background: var(--t-glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--t-glass-border);
+}
+
+/* Selection style */
+::selection {
+  background: rgba(251, 179, 193, 0.3);
+  color: var(--t-primary);
+}

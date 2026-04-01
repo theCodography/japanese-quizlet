@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { LearnService } from '../../services/learn.service';
 import { Card } from '../../models/card.model';
 import { Deck } from '../../models/deck.model';
@@ -9,7 +9,7 @@ type Rating = 'hard' | 'good' | 'easy';
 
 @Component({
   selector: 'app-learn',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './learn.component.html',
   styleUrl: './learn.component.css'
 })

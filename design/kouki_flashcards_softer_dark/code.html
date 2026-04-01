@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kouki Japanese - Flashcard Session</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#000767",
+              "surface": "#1A1C2E", // Deep charcoal background
+              "on-primary": "#1A1C2E",
+              "surface-bright": "#25283d",
+              "primary-container": "#4a2c34",
+              "primary-fixed": "#ffd9df",
+              "on-secondary-container": "#cbd2ff",
+              "tertiary": "#a0ceff",
+              "primary": "#FBB3C1", // Soft Sakura Pink
+              "inverse-surface": "#f0f0f2",
+              "on-primary-container": "#ffd9df",
+              "tertiary-container": "#004a78",
+              "on-background": "#f0f0f2",
+              "on-tertiary": "#003355",
+              "surface-container-highest": "#3a3e59",
+              "surface-container-low": "#21243b",
+              "on-error-container": "#ffdad6",
+              "outline": "#9c8d90",
+              "tertiary-fixed": "#cfe5ff",
+              "secondary-fixed": "#e0e0ff",
+              "surface-container": "#2b2e4a",
+              "surface-tint": "#FBB3C1",
+              "on-surface-variant": "#d6c2c4",
+              "on-secondary": "#1A1C2E",
+              "secondary": "#bdc2ff",
+              "on-tertiary-fixed": "#001d34",
+              "on-tertiary-container": "#cfe5ff",
+              "primary-fixed-dim": "#fbb3c1",
+              "background": "#1A1C2E",
+              "surface-variant": "#514345",
+              "error": "#ffb4ab",
+              "on-error": "#690005",
+              "inverse-on-surface": "#1a1c1d",
+              "on-tertiary-fixed-variant": "#004a78",
+              "on-surface": "#f0f0f2",
+              "outline-variant": "#514345",
+              "secondary-container": "#343d96",
+              "surface-dim": "#121323",
+              "on-primary-fixed-variant": "#6b3743",
+              "on-secondary-fixed-variant": "#343d96",
+              "on-primary-fixed": "#360c19",
+              "inverse-primary": "#864e5a",
+              "error-container": "#93000a",
+              "surface-container-high": "#323552",
+              "secondary-fixed-dim": "#bdc2ff",
+              "tertiary-fixed-dim": "#99cbff",
+              "surface-container-lowest": "#1d1f33"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"], // Updated to design system font
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "9999px", "lg": "9999px", "xl": "9999px", "full": "9999px"}, // "ROUND_FULL"
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .perspective-1000 { perspective: 1000px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-primary font-headline">Kouki Japanese</span>
+<div class="hidden md:flex gap-6 font-medium tracking-tight">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Grammar</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Flashcards</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">JLPT Countdown</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-white/5 rounded-full transition-all duration-300 text-on-surface">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-20 px-6 py-8 flex flex-col items-center justify-center max-w-5xl mx-auto w-full">
+<!-- Session Progress Header -->
+<div class="w-full max-w-2xl mb-12">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="font-headline font-bold text-3xl text-primary tracking-tight">Daily Review</span>
+<p class="text-on-surface-variant text-sm mt-1">14 cards remaining in this session</p>
+</div>
+<div class="text-right">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold">Accuracy: 92%</span>
+</div>
+</div>
+<!-- Progress Bar Container -->
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Flashcard Container -->
+<div class="relative w-full max-w-3xl aspect-[16/10] group perspective-1000">
+<!-- Background Layer -->
+<div class="absolute inset-0 bg-surface-container-low translate-x-4 translate-y-4 rounded-3xl -z-10 border border-white/5"></div>
+<!-- Main Card -->
+<div class="relative w-full h-full bg-surface-container-lowest rounded-3xl border border-white/10 shadow-2xl flex flex-col overflow-hidden">
+<!-- Card Header/Context -->
+<div class="p-8 flex justify-between items-start">
+<div class="flex gap-2">
+<span class="px-4 py-1 bg-secondary-container/30 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full border border-secondary/20">JLPT N3</span>
+<span class="px-4 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">Vocabulary</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<!-- Front of Card: Kanji -->
+<div class="flex-1 flex flex-col items-center justify-center px-12 text-center">
+<div class="relative">
+<!-- Decorative element -->
+<div class="absolute -top-12 -left-12 text-9xl font-black text-primary/5 select-none pointer-events-none">学</div>
+<h1 class="text-8xl md:text-9xl font-bold text-on-surface tracking-tighter mb-4 font-headline leading-tight">学習</h1>
+<p class="text-2xl text-secondary font-medium tracking-wide">がくしゅう</p>
+</div>
+</div>
+<!-- Interaction Prompt -->
+<div class="p-8 flex justify-center border-t border-white/5">
+<button class="group flex items-center gap-3 text-on-surface-variant hover:text-primary transition-all duration-300">
+<span class="text-sm font-medium tracking-tight">Tap card to reveal meaning</span>
+<span class="material-symbols-outlined text-lg group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Controls -->
+<div class="mt-16 w-full max-w-2xl grid grid-cols-3 gap-6">
+<!-- Hard Button -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-3xl bg-surface-container-low border border-white/5 hover:border-error/30 hover:bg-error/5 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-lowest text-error shadow-sm group-hover:scale-110 transition-transform border border-white/5">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold text-on-surface">Hard</span>
+<span class="block text-[10px] text-outline font-medium">Review in 1m</span>
+</div>
+</button>
+<!-- Good Button -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-3xl bg-primary text-on-primary shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-on-primary">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold">Good</span>
+<span class="block text-[10px] text-on-primary/80 font-medium">Review in 1d</span>
+</div>
+</button>
+<!-- Easy Button -->
+<button class="group flex flex-col items-center gap-3 p-6 rounded-3xl bg-surface-container-low border border-white/5 hover:border-secondary/30 hover:bg-secondary/5 transition-all duration-300">
+<div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-lowest text-secondary shadow-sm group-hover:scale-110 transition-transform border border-white/5">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div class="text-center">
+<span class="block text-sm font-bold text-on-surface">Easy</span>
+<span class="block text-[10px] text-outline font-medium">Review in 4d</span>
+</div>
+</button>
+</div>
+<!-- Hotkey Legend -->
+<div class="mt-12 flex gap-8">
+<div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-highest font-mono text-[10px] font-bold border border-white/10">1</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Hard</span>
+</div>
+<div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-highest font-mono text-[10px] font-bold border border-white/10">SPACE</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Reveal</span>
+</div>
+<div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-highest font-mono text-[10px] font-bold border border-white/10">2</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Good</span>
+</div>
+<div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-highest font-mono text-[10px] font-bold border border-white/10">3</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Easy</span>
+</div>
+</div>
+</main>
+<!-- Side Curriculum Peek -->
+<aside class="fixed left-0 top-0 h-screen w-16 hover:w-64 group transition-all duration-500 bg-surface-container-lowest/80 backdrop-blur-md pt-20 z-40 overflow-hidden border-r border-white/5">
+<div class="flex flex-col gap-4 py-6 px-4">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex-shrink-0 p-0.5 border border-primary/20">
+<img alt="User" class="w-full h-full object-cover rounded-full" data-alt="Close up portrait of a young woman with a focused expression, soft natural indoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtzBxkOn3nPO2sIBoMbNWIwEMqN6USH8bKeRznpCmeb-FWz8tWQ7AMrPxmlFYWAaIC1tbmPVV5VKWGxcHssDLtNQTjKDKBWwAU9U6b73dd89d1cWIT_WPlR1QHFWJjTeFjf0Sk2V07gEE_abUlsRDsvfRXC6kwotKxr5oGHCqPyEejb1RRdLobzzAdigIO-20mfTyYppu_QgHAcOIcw3D4q6xSl67Or9uCET0FOJcTXM6v7WbDnoqkWUBqfMNjxCYBrJqoUd1TrPNZ"/>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+<p class="text-xs font-bold text-on-surface">Alex Tan</p>
+<p class="text-[10px] text-on-surface-variant">Master Level: N3</p>
+</div>
+</div>
+<a class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-white/5 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="filter_1">filter_1</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold">JLPT N5</span>
+</a>
+<a class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-white/5 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="filter_2">filter_2</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm font-semibold">JLPT N4</span>
+</a>
+<a class="flex items-center gap-4 p-2 bg-primary/10 text-primary font-semibold rounded-2xl border border-primary/20" href="#">
+<span class="material-symbols-outlined" data-icon="filter_3">filter_3</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity text-sm">JLPT N3</span>
+</a>
+<div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-full py-3 bg-primary text-on-primary rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-primary/20">
+                Daily Stats
+            </button>
+</div>
+</div>
+</aside>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-lowest/50 backdrop-blur-sm border-t border-white/5 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6">
+<span class="text-lg font-black text-primary">Kouki Japanese</span>
+<div class="flex gap-8 text-on-surface-variant">
+<a class="hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+<a class="hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+<span class="text-on-surface-variant opacity-40 italic">© 2024 Kouki Japanese. All rights reserved.</span>
+</div>
+</footer>
+</body></html>

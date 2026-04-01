@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng nhập | Kouki Japanese</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#e2e2e6",
+              "background": "#12121e",
+              "on-secondary-container": "#fbb3c1",
+              "surface-container-low": "#24253a",
+              "surface-container": "#2a2c42",
+              "surface-variant": "#43465b",
+              "tertiary-fixed-dim": "#99cbff",
+              "on-secondary": "#1a1c2e",
+              "error-container": "#93000a",
+              "surface-container-high": "#34364e",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#c2c2c9",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#fbb3c1",
+              "on-primary-fixed": "#360c19",
+              "surface-container-highest": "#3e405a",
+              "primary-container": "#6b3743",
+              "primary-fixed-dim": "#fbb3c1",
+              "primary": "#fbb3c1",
+              "inverse-surface": "#e2e2e6",
+              "tertiary": "#cfe5ff",
+              "surface": "#1a1c2e",
+              "error": "#ffdad6",
+              "outline-variant": "#514345",
+              "on-tertiary-container": "#cfe5ff",
+              "inverse-on-surface": "#1a1c2e",
+              "tertiary-fixed": "#cfe5ff",
+              "inverse-primary": "#864e5a",
+              "secondary-fixed": "#fbb3c1",
+              "outline": "#998e90",
+              "surface-bright": "#2a2c42",
+              "on-primary-fixed-variant": "#ffd9df",
+              "surface-dim": "#12121e",
+              "secondary-container": "#4a3338",
+              "on-secondary-fixed-variant": "#ffd9df",
+              "on-surface": "#e2e2e6",
+              "on-error-container": "#ffdad6",
+              "on-primary-container": "#ffd9df",
+              "surface-container-lowest": "#12121e",
+              "on-secondary-fixed": "#360c19",
+              "primary-fixed": "#ffd9df",
+              "on-tertiary-fixed-variant": "#004a78",
+              "tertiary-container": "#004a78",
+              "surface-tint": "#fbb3c1",
+              "secondary": "#fbb3c1",
+              "on-tertiary-fixed": "#001d34",
+              "on-primary": "#1a1c2e"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "9999px", "lg": "9999px", "xl": "9999px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .zen-gradient {
+            background: linear-gradient(135deg, #fbb3c1 0%, #ff8ea5 100%);
+        }
+        .glass-panel {
+            background: rgba(26, 28, 46, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(251, 179, 193, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex items-center justify-center p-4 md:p-8">
+<!-- Auth Container -->
+<main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-2xl shadow-black/40">
+<!-- Left Side: Illustration (Asymmetric Aesthetic) -->
+<section class="hidden md:flex relative flex-col justify-between p-12 bg-surface-container overflow-hidden">
+<!-- Decorative Elements -->
+<div class="absolute top-[-10%] right-[-10%] w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-80 h-80 rounded-full bg-secondary-container opacity-20 blur-3xl"></div>
+<div class="relative z-10">
+<h1 class="font-headline font-extrabold text-4xl tracking-tighter text-primary mb-4" style="">Kouki Japanese
+                </h1>
+<p class="font-body text-on-surface-variant max-w-xs leading-relaxed opacity-80" style="">
+                    Nơi kiến thức hòa quyện cùng sự tĩnh lặng. Bắt đầu hành trình học tập Zen của bạn hôm nay.
+                </p>
+</div>
+<div class="relative z-10 flex justify-center items-center py-12">
+<div class="relative w-full aspect-square max-w-sm">
+<!-- Image with subtle offset for asymmetric look -->
+<img alt="Japanese cherry blossoms" class="w-full h-full object-cover rounded-[2rem] shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-700 brightness-90 grayscale-[0.2]" data-alt="Close-up of delicate pink cherry blossoms against a soft morning light, minimalist zen aesthetic with shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaN-zOeRCMQxbBC2pA5IPzTR5E2ADG3gwRUSgnghITmON_ortgNuf_XJx6FQ2iyrtO40xjpYeBMaP0YUYezaUtfHDqv8_hLTJ0iH5CemOFI7NGNUiKxCtglFT3UdVWTEnFoqinq9X8KPFutxZZ94-ACfsa8ZQ-zutZYLrI11dRi49_SBfkegmaOhVilTtYvf-utBrn7jWSrL5kxPjzbFAhqcXbskTUhsORIfRIpeqwvsD7DdQE4oPqLJSx6J2QgGksb0TN7Qu2rSIs" style=""/>
+<!-- Floating Kanji Accent -->
+<div class="absolute -bottom-6 -right-6 glass-panel p-6 rounded-2xl shadow-lg">
+<span class="text-6xl font-headline font-bold text-primary/30 select-none" style="">桜</span>
+</div>
+</div>
+</div>
+<div class="relative z-10">
+<p class="font-label text-xs tracking-widest uppercase text-on-surface-variant opacity-60" style="">
+                    Serene learning for the modern scholar.
+                </p>
+</div>
+</section>
+<!-- Right Side: Login Form -->
+<section class="flex flex-col justify-center p-8 md:p-16 lg:p-24 bg-surface-container-lowest">
+<div class="w-full max-w-md mx-auto">
+<div class="mb-10">
+<h2 class="font-headline font-bold text-3xl text-on-surface mb-2" style="">Xin chào!</h2>
+<p class="text-on-surface-variant font-body" style="">Đăng nhập vào tài khoản Kouki của bạn</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block font-label text-sm font-semibold text-on-surface-variant px-1" for="email" style="">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" style="">mail</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border border-transparent rounded-full focus:border-primary/30 focus:ring-4 focus:ring-primary/5 focus:bg-surface-container transition-all placeholder:text-outline font-body text-on-surface" id="email" name="email" placeholder="ten@vidu.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="block font-label text-sm font-semibold text-on-surface-variant" for="password" style="">Mật khẩu</label>
+<a class="text-xs font-semibold text-primary hover:text-on-primary-container transition-colors" href="#" style="">Quên mật khẩu?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" style="">lock</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border border-transparent rounded-full focus:border-primary/30 focus:ring-4 focus:ring-primary/5 focus:bg-surface-container transition-all placeholder:text-outline font-body text-on-surface" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4 space-y-6">
+<button class="w-full py-4 zen-gradient text-on-primary font-headline font-bold text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all duration-300" style="" type="submit">
+                            Đăng nhập
+                        </button>
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
+<div class="relative flex justify-center text-xs uppercase"><span class="bg-surface-container-lowest px-4 text-outline font-label" style="">Hoặc tiếp tục với</span></div>
+</div>
+<!-- Social Login (Secondary Style) -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-full hover:bg-surface-container-high border border-outline-variant/20 transition-colors group" style="" type="button">
+<img alt="Google" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-all" data-alt="Google colorful logo icon on transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAJcozoVl-CcgeuIW2Ccj9SEpayD_3uyGo2y9efQp-t90XsKiGYpl7d0s2rwIL_0rJIGnBVUK3u_ZILD6cLP82ikpgxWKGHtayc4i29wJTT2Cr0ehLh4dPTfih31EvfQp_TnYcn2IUBh4X1_ZD6ruv15PxJipZF1WMw_lm4HDDdc8Bg9U9n2ve9pWX4pVkUceduOw1l2IBKyLEn2pmvznYaRIdM4nmq8zh-Wmn3fF6E45NC1LmQWCM6Au3WntExisLFfGG7eJdDZER" style=""/>
+<span class="font-label text-sm font-semibold text-on-surface" style="">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-low rounded-full hover:bg-surface-container-high border border-outline-variant/20 transition-colors group" style="" type="button">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-weight="fill" style="">brand_awareness</span>
+<span class="font-label text-sm font-semibold text-on-surface" style="">Apple</span>
+</button>
+</div>
+</div>
+</form>
+<div class="mt-12 text-center">
+<p class="text-on-surface-variant text-sm font-body" style="">
+                        Bạn chưa có tài khoản? 
+                        <a class="ml-1 text-primary font-bold hover:underline" href="#" style="">Đăng ký tài khoản mới</a>
+</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer-like metadata -->
+<div class="fixed bottom-6 w-full text-center pointer-events-none">
+<p class="text-[10px] uppercase tracking-widest text-outline font-label opacity-40" style="">
+            © 2024 Kouki Japanese • Inspired by Nocturnal Atelier
+        </p>
+</div>
+</body></html>

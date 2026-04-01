@@ -21,9 +21,13 @@ export interface RegisterPayload {
   password: string;
 }
 
-export interface AuthResponse {
-  token: string;
-  user: AuthUser;
+export interface ApiAuthResponse {
+  success: boolean;
+  message: string;
+  data: {
+    token: string;
+    user: AuthUser;
+  };
 }
 
 @Injectable({ providedIn: 'root' })
@@ -37,15 +41,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(payload: LoginPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, payload).pipe(
-      tap(res => this.saveSession(res))
+  login(payload: LoginPayload): Observable<ApiAuthResponse> {
+    return this.http.post<ApiAuthResponse>(`${environment.apiUrl}/auth/login`, payload).pipe(
+      tap(res => this.saveSession(res.data))
     );
   }
 
-  register(payload: RegisterPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/register`, payload).pipe(
-      tap(res => this.saveSession(res))
+  register(payload: RegisterPayload): Observable<ApiAuthResponse> {
+    return this.http.post<ApiAuthResponse>(`${environment.apiUrl}/auth/register`, payload).pipe(
+      tap(res => this.saveSession(res.data))
     );
   }
 
@@ -63,10 +67,10 @@ export class AuthService {
     return this._currentUser();
   }
 
-  private saveSession(res: AuthResponse): void {
-    localStorage.setItem(this.TOKEN_KEY, res.token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(res.user));
-    this._currentUser.set(res.user);
+  private saveSession(data: { token: string; user: AuthUser }): void {
+    localStorage.setItem(this.TOKEN_KEY, data.token);
+    localStorage.setItem(this.USER_KEY, JSON.stringify(data.user));
+    this._currentUser.set(data.user);
   }
 
   private loadUser(): AuthUser | null {

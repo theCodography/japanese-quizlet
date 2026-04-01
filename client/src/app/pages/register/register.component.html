@@ -1,0 +1,215 @@
+<div class="min-h-screen bg-background flex flex-col overflow-x-hidden">
+
+  <main class="flex-grow flex items-center justify-center relative p-6">
+
+    <!-- Background decorations -->
+    <div class="absolute top-0 right-0 w-1/3 h-2/3 pointer-events-none opacity-5"
+         style="background-image: radial-gradient(#FBB3C1 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 items-center gap-12 relative z-10">
+
+      <!-- Left: Branding -->
+      <div class="lg:col-span-5 hidden lg:block space-y-8">
+        <div class="space-y-4">
+          <h1 class="font-headline text-5xl font-extrabold tracking-tight text-primary leading-tight">
+            Kouki Japanese
+          </h1>
+          <p class="text-on-surface-variant text-lg leading-relaxed max-w-md"
+             style="font-family: 'Be Vietnam Pro', sans-serif;">
+            Hanh trinh chinh phuc ngon ngu trong mot khong gian tinh lang va day cam hung.
+          </p>
+        </div>
+
+        <!-- Image -->
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-primary/10 rounded-[2rem] blur-xl group-hover:bg-primary/20 transition-all duration-700"></div>
+          <img
+            alt="Serene learning environment"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1KiY8TCT8ROHw3D_DhNCSzm9agbq8jWd-jaONkM69xpzpVd9LJGbZEaEnqkREVA4UvNIK7BL2oCVkBceP9nFCFsPjme99TeQz7co22hN4z-NHHEjtAJEj3ZnLtxPqZS8ya9-qiYNPoIIJCcRv8HoBTPXE7-cm54WvUcDWMg003Yj59hwQ5RAVB-weRsRUMHDlxKw7sNGhB5W0-1_VbXhUqth4o4_D32Ats4y3OT6TiIomkkJ2dDATQBUQuxaDiFEoQDQMFvIiE0kE"
+            class="relative rounded-[2rem] w-full h-[400px] object-cover shadow-sm opacity-80" />
+        </div>
+
+        <div class="flex items-center gap-4 text-sm text-secondary font-medium"
+             style="font-family: 'Be Vietnam Pro', sans-serif;">
+          <span class="material-symbols-outlined">verified</span>
+          <span>Tham gia cung hon 10.000 hoc gia hien dai</span>
+        </div>
+      </div>
+
+      <!-- Right: Signup Form -->
+      <div class="lg:col-span-7 flex justify-center lg:justify-end">
+        <div class="w-full max-w-md bg-surface-container rounded-[2rem] p-10 shadow-xl border border-white/5">
+
+          <!-- Mobile brand -->
+          <div class="lg:hidden mb-6 text-center">
+            <h1 class="font-headline font-extrabold text-2xl tracking-tighter text-primary">Kouki Japanese</h1>
+          </div>
+
+          <!-- Header -->
+          <div class="mb-10">
+            <h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Tao tai khoan</h2>
+            <p class="text-on-surface-variant" style="font-family: 'Be Vietnam Pro', sans-serif;">
+              Bat dau hanh trinh hoc tap cua ban ngay hom nay.
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form (ngSubmit)="onSubmit()" class="space-y-5">
+
+            <!-- Full Name -->
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-on-surface-variant ml-4"
+                     for="fullname" style="font-family: 'Be Vietnam Pro', sans-serif;">Ho ten</label>
+              <div class="relative group">
+                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline
+                             group-focus-within:text-primary transition-colors">person</span>
+                <input
+                  id="fullname"
+                  type="text"
+                  [(ngModel)]="form.username"
+                  name="username"
+                  required
+                  placeholder="Nguyen Van A"
+                  class="w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-full
+                         focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high
+                         transition-all placeholder:text-outline/50 text-on-surface"
+                  style="font-family: 'Be Vietnam Pro', sans-serif;" />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-on-surface-variant ml-4"
+                     for="email" style="font-family: 'Be Vietnam Pro', sans-serif;">Email</label>
+              <div class="relative group">
+                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline
+                             group-focus-within:text-primary transition-colors">mail</span>
+                <input
+                  id="email"
+                  type="email"
+                  [(ngModel)]="form.email"
+                  name="email"
+                  required
+                  placeholder="example@kouki.edu.vn"
+                  class="w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-full
+                         focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high
+                         transition-all placeholder:text-outline/50 text-on-surface"
+                  style="font-family: 'Be Vietnam Pro', sans-serif;" />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-on-surface-variant ml-4"
+                     for="password" style="font-family: 'Be Vietnam Pro', sans-serif;">Mat khau</label>
+              <div class="relative group">
+                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline
+                             group-focus-within:text-primary transition-colors">lock</span>
+                <input
+                  id="password"
+                  [type]="showPassword() ? 'text' : 'password'"
+                  [(ngModel)]="form.password"
+                  name="password"
+                  required
+                  placeholder="••••••••"
+                  class="w-full pl-14 pr-12 py-4 bg-surface-container-low border-none rounded-full
+                         focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high
+                         transition-all placeholder:text-outline/50 text-on-surface"
+                  style="font-family: 'Be Vietnam Pro', sans-serif;" />
+                <button type="button" (click)="togglePassword()"
+                        class="absolute right-5 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined">
+                    {{ showPassword() ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-on-surface-variant ml-4"
+                     for="confirm_password" style="font-family: 'Be Vietnam Pro', sans-serif;">Xac nhan mat khau</label>
+              <div class="relative group">
+                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline
+                             group-focus-within:text-primary transition-colors">verified_user</span>
+                <input
+                  id="confirm_password"
+                  [type]="showConfirmPassword() ? 'text' : 'password'"
+                  [(ngModel)]="confirmPassword"
+                  name="confirmPassword"
+                  required
+                  placeholder="••••••••"
+                  class="w-full pl-14 pr-12 py-4 bg-surface-container-low border-none rounded-full
+                         focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high
+                         transition-all placeholder:text-outline/50 text-on-surface"
+                  style="font-family: 'Be Vietnam Pro', sans-serif;" />
+                <button type="button" (click)="toggleConfirmPassword()"
+                        class="absolute right-5 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined">
+                    {{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Error message -->
+            @if (errorMessage()) {
+              <div class="flex items-center gap-2 px-4 py-3 rounded-xl bg-error-container/30 text-error text-sm"
+                   style="font-family: 'Be Vietnam Pro', sans-serif;">
+                <span class="material-symbols-outlined text-base">error</span>
+                {{ errorMessage() }}
+              </div>
+            }
+
+            <!-- Submit -->
+            <div class="pt-4">
+              <button
+                type="submit"
+                [disabled]="loading() || !form.email || !form.username || !form.password || !confirmPassword"
+                class="w-full py-4 rounded-full font-bold text-lg
+                       shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95
+                       transition-all duration-300
+                       disabled:opacity-50 disabled:scale-100 disabled:shadow-none
+                       flex items-center justify-center gap-2"
+                style="background: linear-gradient(45deg, #FBB3C1, #864E5A); color: #1A1C2E;">
+                @if (loading()) {
+                  <span class="w-5 h-5 border-2 border-on-secondary/40 border-t-on-secondary rounded-full animate-spin"></span>
+                  Dang tao tai khoan...
+                } @else {
+                  Tao tai khoan
+                }
+              </button>
+            </div>
+          </form>
+
+          <!-- Login link -->
+          <div class="mt-8 pt-8 border-t border-white/5 text-center">
+            <p class="text-on-surface-variant" style="font-family: 'Be Vietnam Pro', sans-serif;">
+              Da co tai khoan?
+              <a routerLink="/login" class="text-primary font-bold hover:underline ml-1">Dang nhap</a>
+            </p>
+          </div>
+
+          <!-- Zen note -->
+          <div class="mt-8 flex justify-center">
+            <div class="inline-flex items-center gap-2 px-6 py-2 bg-secondary-container/30 rounded-full border border-white/5">
+              <span class="text-[10px] uppercase tracking-widest font-bold text-secondary"
+                    style="font-family: 'Be Vietnam Pro', sans-serif;">
+                Hoc tap la mot hanh trinh tinh lang
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Floating decoration -->
+  <div class="fixed bottom-12 right-12 opacity-5 pointer-events-none select-none">
+    <span class="font-headline text-[120px] font-bold text-primary leading-none">桜</span>
+  </div>
+
+</div>

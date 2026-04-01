@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#E2E2E6",
+              "background": "#1A1C2E",
+              "on-secondary-container": "#DDE1FF",
+              "surface-container-low": "#242639",
+              "surface-container": "#2A2C40",
+              "surface-variant": "#49454F",
+              "tertiary-fixed-dim": "#99cbff",
+              "on-secondary": "#1A1C2E",
+              "error-container": "#8C1D18",
+              "surface-container-high": "#35374C",
+              "on-tertiary": "#FFFFFF",
+              "on-surface-variant": "#CAC4D0",
+              "on-error": "#601410",
+              "secondary-fixed-dim": "#bdc2ff",
+              "on-primary-fixed": "#311018",
+              "surface-container-highest": "#414359",
+              "primary-container": "#5D3F45",
+              "primary-fixed-dim": "#FBB3C1",
+              "primary": "#FBB3C1",
+              "inverse-surface": "#E2E2E6",
+              "tertiary": "#A0CEFF",
+              "surface": "#1A1C2E",
+              "error": "#F2B8B5",
+              "outline-variant": "#49454F",
+              "on-tertiary-container": "#D1E4FF",
+              "inverse-on-surface": "#1A1C2E",
+              "tertiary-fixed": "#cfe5ff",
+              "inverse-primary": "#864E5A",
+              "secondary-fixed": "#e0e0ff",
+              "outline": "#938F99",
+              "surface-bright": "#3A3D52",
+              "on-primary-fixed-variant": "#77565D",
+              "surface-dim": "#11131F",
+              "secondary-container": "#3F4471",
+              "on-secondary-fixed-variant": "#bdc2ff",
+              "on-surface": "#E2E2E6",
+              "on-error-container": "#F9DEDC",
+              "on-primary-container": "#FFD9DF",
+              "surface-container-lowest": "#0F111A",
+              "on-secondary-fixed": "#000767",
+              "primary-fixed": "#FFD9DF",
+              "on-tertiary-fixed-variant": "#004a78",
+              "tertiary-container": "#004977",
+              "surface-tint": "#FBB3C1",
+              "secondary": "#BCC2FF",
+              "on-tertiary-fixed": "#001d34",
+              "on-primary": "#561E2B"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "9999px", "lg": "9999px", "xl": "9999px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(26, 28, 46, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        .japanese-texture {
+            background-image: radial-gradient(#FBB3C1 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
+        .primary-gradient {
+            background: linear-gradient(45deg, #FBB3C1, #864E5A);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+<main class="flex-grow flex items-center justify-center relative p-6">
+<!-- Asymmetric Background Elements -->
+<div class="absolute top-0 right-0 w-1/3 h-2/3 japanese-texture pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 items-center gap-12 relative z-10">
+<!-- Branding & Visual Column -->
+<div class="lg:col-span-5 hidden lg:block space-y-8">
+<div class="space-y-4">
+<h1 class="font-headline text-5xl font-extrabold tracking-tight text-primary leading-tight">Kouki Japanese</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                        Hành trình chinh phục ngôn ngữ trong một không gian tĩnh lặng và đầy cảm hứng.
+                    </p>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/10 rounded-[2rem] blur-xl group-hover:bg-primary/20 transition-all duration-700"></div>
+<img alt="Serene learning environment" class="relative rounded-[2rem] w-full h-[400px] object-cover shadow-sm opacity-80" data-alt="Minimalist Japanese study space with a single cherry blossom branch in a ceramic vase, soft morning light hitting paper scrolls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1KiY8TCT8ROHw3D_DhNCSzm9agbq8jWd-jaONkM69xpzpVd9LJGbZEaEnqkREVA4UvNIK7BL2oCVkBceP9nFCFsPjme99TeQz7co22hN4z-NHHEjtAJEj3ZnLtxPqZS8ya9-qiYNPoIIJCcRv8HoBTPXE7-cm54WvUcDWMg003Yj59hwQ5RAVB-weRsRUMHDlxKw7sNGhB5W0-1_VbXhUqth4o4_D32Ats4y3OT6TiIomkkJ2dDATQBUQuxaDiFEoQDQMFvIiE0kE"/>
+</div>
+<div class="flex items-center gap-4 text-sm text-secondary font-medium">
+<span class="material-symbols-outlined">verified</span>
+<span>Tham gia cùng hơn 10.000 học giả hiện đại</span>
+</div>
+</div>
+<!-- Signup Form Column -->
+<div class="lg:col-span-7 flex justify-center lg:justify-end">
+<div class="w-full max-w-md bg-surface-container rounded-[2rem] p-10 shadow-xl border border-white/5">
+<div class="mb-10">
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Tạo tài khoản</h2>
+<p class="text-on-surface-variant">Bắt đầu hành trình học tập của bạn ngay hôm nay.</p>
+</div>
+<form class="space-y-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-4" for="fullname">Họ tên</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high transition-all placeholder:text-outline/50 text-on-surface" id="fullname" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-4" for="email">Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high transition-all placeholder:text-outline/50 text-on-surface" id="email" placeholder="example@sakura.edu.vn" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-4" for="password">Mật khẩu</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-14 pr-12 py-4 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high transition-all placeholder:text-outline/50 text-on-surface" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-5 top-1/2 -translate-y-1/2 text-outline hover:text-primary" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-4" for="confirm_password">Xác nhận mật khẩu</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">verified_user</span>
+<input class="w-full pl-14 pr-12 py-4 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high transition-all placeholder:text-outline/50 text-on-surface" id="confirm_password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full primary-gradient text-on-secondary font-bold py-4 rounded-full shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all duration-300" type="submit">
+                                Tạo tài khoản
+                            </button>
+</div>
+</form>
+<div class="mt-8 pt-8 border-t border-white/5 text-center">
+<p class="text-on-surface-variant">
+                            Đã có tài khoản? 
+                            <a class="text-primary font-bold hover:underline ml-1" href="#">Đăng nhập</a>
+</p>
+</div>
+<!-- Subtle Zen Note -->
+<div class="mt-8 flex justify-center">
+<div class="inline-flex items-center gap-2 px-6 py-2 bg-secondary-container/30 rounded-full border border-white/5">
+<span class="text-[10px] uppercase tracking-widest font-bold text-secondary" style="">Học tập là một hành trình tĩnh lặng</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Decoration -->
+<div class="fixed bottom-12 right-12 opacity-5 pointer-events-none select-none">
+<span class="font-headline text-[120px] font-bold text-primary leading-none">桜</span>
+</div>
+</body></html>

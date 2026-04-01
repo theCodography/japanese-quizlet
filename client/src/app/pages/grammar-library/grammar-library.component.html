@@ -43,7 +43,7 @@
         @for (level of levels(); track level.level) {
           <div
             (click)="selectLevel(level.level)"
-            class="group relative bg-white rounded-2xl border border-outline-variant/40
+            class="group relative bg-surface-container-low rounded-2xl border border-outline-variant/40
                    shadow-[0_2px_16px_rgba(26,28,29,0.04)]
                    hover:shadow-[0_12px_40px_rgba(134,78,90,0.12)]
                    hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
@@ -168,7 +168,7 @@
           <div class="space-y-3">
             @for (grammar of filteredGrouped()[lessonNum]; track grammar.id) {
               <div
-                class="bg-white rounded-2xl border border-outline-variant/40
+                class="bg-surface-container-low rounded-2xl border border-outline-variant/40
                        shadow-[0_1px_8px_rgba(26,28,29,0.03)]
                        hover:shadow-[0_4px_20px_rgba(134,78,90,0.08)]
                        transition-all duration-200 overflow-hidden">

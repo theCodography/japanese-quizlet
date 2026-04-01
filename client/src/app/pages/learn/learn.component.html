@@ -3,21 +3,18 @@
 <!-- ══════════════════════════════════════════════
      TOP NAVIGATION BAR – Glassmorphism
      ══════════════════════════════════════════════ -->
-<nav class="fixed top-0 w-full z-50 bg-[#f9f9fb]/80 backdrop-blur-xl shadow-sm">
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30">
   <div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
-    <!-- Logo + Nav Links -->
     <div class="flex items-center gap-8">
-      <span class="text-2xl font-bold tracking-tighter text-[#864e5a]" style="font-family: 'Plus Jakarta Sans', sans-serif;">Zen Editorial</span>
+      <span class="text-2xl font-bold tracking-tighter text-primary" style="font-family: 'Plus Jakarta Sans', sans-serif;">Kouki Japanese</span>
       <div class="hidden md:flex gap-6 font-medium tracking-tight text-sm" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-        <a href="#" class="text-[#514345] hover:text-[#864e5a] transition-colors">Home</a>
-        <a href="#" class="text-[#514345] hover:text-[#864e5a] transition-colors">Grammar</a>
-        <a href="#" class="text-[#864e5a] border-b-2 border-[#ffb7c5] pb-0.5">Flashcards</a>
-        <a href="#" class="text-[#514345] hover:text-[#864e5a] transition-colors">JLPT Countdown</a>
+        <a routerLink="/dashboard" class="text-on-surface-variant hover:text-primary transition-colors">Home</a>
+        <a routerLink="/grammar" class="text-on-surface-variant hover:text-primary transition-colors">Grammar</a>
+        <a routerLink="/decks" class="text-primary border-b-2 border-primary-container pb-0.5">Flashcards</a>
       </div>
     </div>
-    <!-- Close Button -->
     <button (click)="goBack()"
-            class="p-2 hover:bg-[#ffd9df]/50 rounded-full transition-all duration-300 text-[#864e5a]">
+            class="p-2 hover:bg-primary/10 rounded-full transition-all duration-300 text-primary">
       <span class="material-symbols-outlined">close</span>
     </button>
   </div>
@@ -26,28 +23,26 @@
 <!-- ══════════════════════════════════════════════
      LEFT SIDEBAR – Hover Expand
      ══════════════════════════════════════════════ -->
-<aside class="fixed left-0 top-0 h-screen w-16 hover:w-64 group/aside transition-all duration-500 bg-[#f9f9fb] pt-20 z-40 overflow-hidden border-r border-[#d6c2c4]/10">
+<aside class="fixed left-0 top-0 h-screen w-16 hover:w-64 group/aside transition-all duration-500 bg-surface pt-20 z-40 overflow-hidden border-r border-outline-variant/10">
   <div class="flex flex-col gap-4 py-6 px-4">
-    <!-- User Avatar -->
     <div class="flex items-center gap-4 mb-8">
-      <div class="w-8 h-8 rounded-full bg-[#ffd9df] flex-shrink-0 overflow-hidden">
-        <div class="w-full h-full bg-gradient-to-br from-[#864e5a] to-[#ffb7c5] flex items-center justify-center text-white text-xs font-bold">J</div>
+      <div class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 overflow-hidden">
+        <div class="w-full h-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary text-xs font-bold">J</div>
       </div>
       <div class="opacity-0 group-hover/aside:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        <p class="text-xs font-bold text-[#864e5a]">{{ deck()?.title || 'Deck' }}</p>
-        <p class="text-[10px] text-[#514345]">Đang học</p>
+        <p class="text-xs font-bold text-primary">{{ deck()?.title || 'Deck' }}</p>
+        <p class="text-[10px] text-on-surface-variant">Dang hoc</p>
       </div>
     </div>
-    <!-- Level Navigation -->
-    <a href="#" class="flex items-center gap-4 p-2 text-[#514345] hover:bg-[#eeeef0] rounded-lg transition-all">
+    <a routerLink="/dashboard" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
       <span class="material-symbols-outlined flex-shrink-0">filter_1</span>
       <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">JLPT N5</span>
     </a>
-    <a href="#" class="flex items-center gap-4 p-2 text-[#514345] hover:bg-[#eeeef0] rounded-lg transition-all">
+    <a routerLink="/dashboard" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
       <span class="material-symbols-outlined flex-shrink-0">filter_2</span>
       <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">JLPT N4</span>
     </a>
-    <a href="#" class="flex items-center gap-4 p-2 bg-[#ffd9df] text-[#864e5a] font-semibold rounded-lg">
+    <a routerLink="/dashboard" class="flex items-center gap-4 p-2 bg-primary-container/30 text-primary font-semibold rounded-lg">
       <span class="material-symbols-outlined flex-shrink-0">filter_3</span>
       <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm whitespace-nowrap">JLPT N3</span>
     </a>
@@ -57,17 +52,17 @@
 <!-- ══════════════════════════════════════════════
      MAIN CONTENT
      ══════════════════════════════════════════════ -->
-<div class="min-h-screen bg-[#f9f9fb] flex flex-col pl-16">
+<div class="min-h-screen bg-background flex flex-col pl-16">
 
-  <!-- ── Loading State ── -->
+  <!-- Loading State -->
   @if (isLoading()) {
     <div class="flex-1 flex flex-col items-center justify-center mt-20">
-      <div class="w-12 h-12 border-4 border-[#ffd9df] border-t-[#864e5a] rounded-full animate-spin"></div>
-      <p class="mt-4 text-[#514345] font-medium animate-pulse" style="font-family: 'Be Vietnam Pro', sans-serif;">Đang chuẩn bị thẻ học...</p>
+      <div class="w-12 h-12 border-4 border-primary-container border-t-primary rounded-full animate-spin"></div>
+      <p class="mt-4 text-on-surface-variant font-medium animate-pulse" style="font-family: 'Be Vietnam Pro', sans-serif;">Dang chuan bi the hoc...</p>
     </div>
   }
 
-  <!-- ── Learn Area ── -->
+  <!-- Learn Area -->
   @if (!isLoading() && !isFinished()) {
     <main class="flex-1 mt-20 px-6 py-8 flex flex-col items-center justify-center max-w-5xl mx-auto w-full">
 
@@ -75,65 +70,62 @@
       <div class="w-full max-w-2xl mb-10">
         <div class="flex justify-between items-end mb-4">
           <div>
-            <span class="font-bold text-3xl text-[#864e5a] tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Daily Review</span>
-            <p class="text-[#514345] text-sm mt-1" style="font-family: 'Be Vietnam Pro', sans-serif;">
-              {{ cards().length - currentIndex() }} thẻ còn lại trong phiên này
+            <span class="font-bold text-3xl text-primary tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Daily Review</span>
+            <p class="text-on-surface-variant text-sm mt-1" style="font-family: 'Be Vietnam Pro', sans-serif;">
+              {{ cards().length - currentIndex() }} the con lai trong phien nay
             </p>
           </div>
           <div class="text-right">
-            <span class="text-xs uppercase tracking-widest text-[#4c56af] font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">
+            <span class="text-xs uppercase tracking-widest text-secondary font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">
               ACCURACY: {{ accuracyPercent() }}%
             </span>
           </div>
         </div>
         <!-- Progress Bar -->
-        <div class="h-3 w-full bg-[#eeeef0] rounded-full overflow-hidden shadow-inner">
-          <div class="h-full bg-gradient-to-r from-[#864e5a] to-[#ffb7c5] rounded-full transition-all duration-500 ease-out"
+        <div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+          <div class="h-full zen-gradient rounded-full transition-all duration-500 ease-out"
                [style.width.%]="progressPercentage()">
           </div>
         </div>
       </div>
 
-      <!-- ══ FLASHCARD CONTAINER ══ -->
+      <!-- FLASHCARD CONTAINER -->
       <div class="relative w-full max-w-3xl group" style="aspect-ratio: 16/10;">
-        <!-- Shadow layer (stacking depth effect) -->
-        <div class="absolute inset-0 bg-[#f3f3f5] translate-x-3 translate-y-3 rounded-2xl -z-10"></div>
+        <!-- Shadow layer -->
+        <div class="absolute inset-0 bg-surface-container translate-x-3 translate-y-3 rounded-2xl -z-10"></div>
 
         <!-- Main Card -->
-        <div class="relative w-full h-full bg-white rounded-2xl shadow-[0_32px_64px_rgba(26,28,29,0.04)] flex flex-col overflow-hidden cursor-pointer"
+        <div class="relative w-full h-full bg-surface-container-low rounded-2xl shadow-[0_32px_64px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden cursor-pointer"
              (click)="revealCard()">
 
-          <!-- Card Header: Tags + Volume -->
+          <!-- Card Header -->
           <div class="p-6 flex justify-between items-start flex-shrink-0">
             <div class="flex gap-2">
-              <span class="px-3 py-1 bg-[#959efd]/20 text-[#27308a] text-[10px] font-bold uppercase tracking-widest rounded-full">
+              <span class="px-3 py-1 bg-secondary/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full">
                 JLPT N3
               </span>
-              <span class="px-3 py-1 bg-[#e8e8ea] text-[#514345] text-[10px] font-bold uppercase tracking-widest rounded-full">
+              <span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">
                 Vocabulary
               </span>
             </div>
-            <button class="text-[#837375] hover:text-[#864e5a] transition-colors" (click)="$event.stopPropagation()">
+            <button class="text-outline hover:text-primary transition-colors" (click)="$event.stopPropagation()">
               <span class="material-symbols-outlined">volume_up</span>
             </button>
           </div>
 
-          <!-- Card Body: Kanji + Furigana (FRONT) -->
+          <!-- Card Body: FRONT -->
           @if (!isRevealed()) {
             <div class="flex-1 flex flex-col items-center justify-center px-12 text-center">
               <div class="relative">
-                <!-- Ghost/Decorative Kanji -->
-                <div class="absolute -top-10 -left-10 text-8xl font-black text-[#864e5a]/5 select-none pointer-events-none leading-none">
+                <div class="absolute -top-10 -left-10 text-8xl font-black text-primary/5 select-none pointer-events-none leading-none">
                   {{ currentCard()?.term?.charAt(0) || '学' }}
                 </div>
-                <!-- Main Kanji -->
-                <h1 class="text-8xl md:text-9xl font-bold text-[#1a1c1d] tracking-tighter mb-4 leading-tight"
+                <h1 class="text-8xl md:text-9xl font-bold text-on-surface tracking-tighter mb-4 leading-tight"
                     style="font-family: 'Plus Jakarta Sans', sans-serif;">
                   {{ currentCard()?.term }}
                 </h1>
-                <!-- Furigana / Reading (dùng example làm subtitle nếu có) -->
                 @if (currentCard()?.example) {
-                  <p class="text-xl text-[#4c56af] font-medium tracking-wide" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                  <p class="text-xl text-secondary font-medium tracking-wide" style="font-family: 'Be Vietnam Pro', sans-serif;">
                     {{ currentCard()?.example }}
                   </p>
                 }
@@ -141,19 +133,19 @@
             </div>
           }
 
-          <!-- Card Body: Definition (BACK / Revealed) -->
+          <!-- Card Body: BACK -->
           @if (isRevealed()) {
             <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 px-10 py-6 items-center">
               <div>
-                <h3 class="text-xs uppercase tracking-widest text-[#837375] mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Nghĩa</h3>
-                <p class="text-3xl font-bold text-[#1a1c1d] leading-snug" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Nghia</h3>
+                <p class="text-3xl font-bold text-on-surface leading-snug" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                   {{ currentCard()?.definition }}
                 </p>
               </div>
               @if (currentCard()?.example) {
                 <div>
-                  <h3 class="text-xs uppercase tracking-widest text-[#837375] mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Ví dụ</h3>
-                  <p class="text-lg text-[#1a1c1d] leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
+                  <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Vi du</h3>
+                  <p class="text-lg text-on-surface leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
                     {{ currentCard()?.example }}
                   </p>
                 </div>
@@ -161,11 +153,11 @@
             </div>
           }
 
-          <!-- Card Footer: Reveal Prompt -->
+          <!-- Reveal prompt -->
           @if (!isRevealed()) {
-            <div class="py-5 flex justify-center border-t border-[#d6c2c4]/10 flex-shrink-0">
-              <button class="group/reveal flex items-center gap-2 text-[#514345] hover:text-[#864e5a] transition-all duration-300">
-                <span class="text-sm font-medium tracking-tight" style="font-family: 'Be Vietnam Pro', sans-serif;">Nhấn để xem nghĩa</span>
+            <div class="py-5 flex justify-center border-t border-outline-variant/20 flex-shrink-0">
+              <button class="group/reveal flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all duration-300">
+                <span class="text-sm font-medium tracking-tight" style="font-family: 'Be Vietnam Pro', sans-serif;">Nhan de xem nghia</span>
                 <span class="material-symbols-outlined text-lg group-hover/reveal:translate-y-1 transition-transform">expand_more</span>
               </button>
             </div>
@@ -173,75 +165,76 @@
         </div>
       </div>
 
-      <!-- ══ RATING BUTTONS (Hard / Good / Easy) ══ -->
+      <!-- RATING BUTTONS -->
       @if (isRevealed()) {
         <div class="mt-8 w-full max-w-2xl grid grid-cols-3 gap-6 animate-[fadeIn_0.3s_ease-out]">
-
           <!-- Hard -->
           <button (click)="rateCard('hard')"
-                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-[#f3f3f5] hover:bg-[#ffdad6]/30 transition-all duration-300">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white text-[#ba1a1a] shadow-sm group-hover:scale-110 transition-transform">
+                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-surface-container hover:bg-error/10 transition-all duration-300">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-high text-error shadow-sm group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined">history</span>
             </div>
             <div class="text-center">
-              <span class="block text-sm font-bold text-[#1a1c1d]" style="font-family: 'Be Vietnam Pro', sans-serif;">Hard</span>
-              <span class="block text-[10px] text-[#837375] font-medium">Ôn lại sau 1 phút</span>
+              <span class="block text-sm font-bold text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">Hard</span>
+              <span class="block text-[10px] text-outline font-medium">On lai sau 1 phut</span>
             </div>
           </button>
 
-          <!-- Good (Primary CTA) -->
+          <!-- Good -->
           <button (click)="rateCard('good')"
-                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-gradient-to-br from-[#864e5a] to-[#ffb7c5] text-white shadow-[0_20px_40px_rgba(134,78,90,0.15)] hover:-translate-y-1 transition-all duration-300">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white">
+                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl zen-gradient text-on-primary
+                         shadow-[0_20px_40px_rgba(251,179,193,0.15)] hover:-translate-y-1 transition-all duration-300">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-on-primary">
               <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">check_circle</span>
             </div>
             <div class="text-center">
               <span class="block text-sm font-bold">Good</span>
-              <span class="block text-[10px] text-white/80 font-medium">Ôn lại sau 1 ngày</span>
+              <span class="block text-[10px] text-on-primary/80 font-medium">On lai sau 1 ngay</span>
             </div>
           </button>
 
           <!-- Easy -->
           <button (click)="rateCard('easy')"
-                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-[#f3f3f5] hover:bg-[#959efd]/10 transition-all duration-300">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white text-[#4c56af] shadow-sm group-hover:scale-110 transition-transform">
+                  class="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-surface-container hover:bg-secondary/10 transition-all duration-300">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-surface-container-high text-secondary shadow-sm group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined">rocket_launch</span>
             </div>
             <div class="text-center">
-              <span class="block text-sm font-bold text-[#1a1c1d]" style="font-family: 'Be Vietnam Pro', sans-serif;">Easy</span>
-              <span class="block text-[10px] text-[#837375] font-medium">Ôn lại sau 4 ngày</span>
+              <span class="block text-sm font-bold text-on-surface" style="font-family: 'Be Vietnam Pro', sans-serif;">Easy</span>
+              <span class="block text-[10px] text-outline font-medium">On lai sau 4 ngay</span>
             </div>
           </button>
         </div>
       }
 
-      <!-- Reveal prompt buttons (before revealed) -->
+      <!-- Reveal button -->
       @if (!isRevealed()) {
         <div class="mt-8 w-full max-w-2xl flex justify-center">
           <button (click)="revealCard()"
-                  class="px-8 py-3 bg-[#864e5a] text-white font-bold rounded-full hover:bg-[#7b4551] hover:-translate-y-0.5 transition-all shadow-[0_8px_24px_rgba(134,78,90,0.2)]"
+                  class="px-8 py-3 zen-gradient text-on-primary font-bold rounded-full hover:-translate-y-0.5 transition-all
+                         shadow-[0_8px_24px_rgba(251,179,193,0.2)]"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Xem nghĩa
+            Xem nghia
           </button>
         </div>
       }
 
-      <!-- ── Hotkey Legend ── -->
+      <!-- Hotkey Legend -->
       <div class="mt-8 flex gap-8">
         <div class="flex items-center gap-2 opacity-40">
-          <span class="px-2 py-0.5 rounded bg-[#e2e2e4] font-mono text-[10px] font-bold border border-[#837375]/10">1</span>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">1</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Hard</span>
         </div>
         <div class="flex items-center gap-2 opacity-40">
-          <span class="px-2 py-0.5 rounded bg-[#e2e2e4] font-mono text-[10px] font-bold border border-[#837375]/10">SPACE</span>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">SPACE</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Reveal</span>
         </div>
         <div class="flex items-center gap-2 opacity-40">
-          <span class="px-2 py-0.5 rounded bg-[#e2e2e4] font-mono text-[10px] font-bold border border-[#837375]/10">2</span>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">2</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Good</span>
         </div>
         <div class="flex items-center gap-2 opacity-40">
-          <span class="px-2 py-0.5 rounded bg-[#e2e2e4] font-mono text-[10px] font-bold border border-[#837375]/10">3</span>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">3</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Easy</span>
         </div>
       </div>
@@ -249,55 +242,55 @@
     </main>
   }
 
-  <!-- ── Finished State ── -->
+  <!-- Finished State -->
   @if (!isLoading() && isFinished()) {
     <main class="flex-1 mt-20 flex flex-col items-center justify-center p-6 relative overflow-hidden">
       <!-- Ambient blobs -->
-      <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-[#ffb7c5] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#959efd] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-primary rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-secondary rounded-full filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 1s;"></div>
 
-      <div class="bg-white p-10 sm:p-14 rounded-[2.5rem] shadow-[0_32px_64px_rgba(26,28,29,0.06)] text-center max-w-lg w-full z-10">
-        <div class="w-24 h-24 bg-gradient-to-tr from-[#864e5a] to-[#ffb7c5] text-white rounded-full flex items-center justify-center mx-auto mb-8">
+      <div class="bg-surface-container p-10 sm:p-14 rounded-[2.5rem] shadow-[0_32px_64px_rgba(0,0,0,0.3)] text-center max-w-lg w-full z-10 border border-outline-variant/10">
+        <div class="w-24 h-24 zen-gradient text-on-primary rounded-full flex items-center justify-center mx-auto mb-8">
           <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1">check_circle</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#1a1c1d] mb-4 tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-          Tuyệt vời! 🎉
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface mb-4 tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          Tuyet voi!
         </h2>
-        <p class="text-[#514345] mb-3 text-lg leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
-          Bạn đã hoàn thành toàn bộ
+        <p class="text-on-surface-variant mb-3 text-lg leading-relaxed" style="font-family: 'Be Vietnam Pro', sans-serif;">
+          Ban da hoan thanh toan bo
         </p>
-        <span class="font-bold text-[#864e5a] bg-[#ffd9df] px-3 py-1.5 rounded-full inline-block mb-8 text-base" style="font-family: 'Be Vietnam Pro', sans-serif;">
+        <span class="font-bold text-primary bg-primary-container/30 px-3 py-1.5 rounded-full inline-block mb-8 text-base" style="font-family: 'Be Vietnam Pro', sans-serif;">
           "{{ deck()?.title }}"
         </span>
         <div class="flex flex-col gap-4">
           <button (click)="restart()"
-                  class="w-full py-4 bg-gradient-to-r from-[#864e5a] to-[#a86a7a] hover:from-[#7b4551] hover:to-[#9a5e6d] text-white font-bold rounded-2xl transition-all text-base shadow-[0_8px_24px_rgba(134,78,90,0.2)] hover:-translate-y-0.5"
+                  class="w-full py-4 zen-gradient text-on-primary font-bold rounded-2xl transition-all text-base
+                         shadow-[0_8px_24px_rgba(251,179,193,0.2)] hover:-translate-y-0.5"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Ôn tập lại từ đầu
+            On tap lai tu dau
           </button>
           <button (click)="goBack()"
-                  class="w-full py-4 bg-white hover:bg-[#f3f3f5] border-2 border-[#eeeef0] text-[#514345] font-bold rounded-2xl transition-all text-base hover:border-[#d6c2c4]"
+                  class="w-full py-4 bg-surface-container-high hover:bg-surface-container-highest
+                         text-on-surface-variant font-bold rounded-2xl transition-all text-base border border-outline-variant/20"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
-            Trở về Dashboard
+            Tro ve Dashboard
           </button>
         </div>
       </div>
     </main>
   }
 
-  <!-- ══════════════════════════════════════════════
-       FOOTER
-       ══════════════════════════════════════════════ -->
-  <footer class="w-full bg-[#eeeef0] text-xs uppercase tracking-widest" style="font-family: 'Be Vietnam Pro', sans-serif;">
+  <!-- Footer -->
+  <footer class="w-full bg-surface-container text-xs uppercase tracking-widest" style="font-family: 'Be Vietnam Pro', sans-serif;">
     <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6">
-      <span class="text-lg font-black text-[#864e5a]" style="font-family: 'Plus Jakarta Sans', sans-serif;">Zen Editorial</span>
-      <div class="flex gap-8 text-[#514345]">
-        <a href="#" class="hover:text-[#864e5a] transition-colors opacity-80 hover:opacity-100">Privacy Policy</a>
-        <a href="#" class="hover:text-[#864e5a] transition-colors opacity-80 hover:opacity-100">Terms of Service</a>
-        <a href="#" class="hover:text-[#864e5a] transition-colors opacity-80 hover:opacity-100">Support</a>
-        <a href="#" class="hover:text-[#864e5a] transition-colors opacity-80 hover:opacity-100">Contact</a>
+      <span class="text-lg font-black text-primary" style="font-family: 'Plus Jakarta Sans', sans-serif;">Kouki Japanese</span>
+      <div class="flex gap-8 text-on-surface-variant">
+        <a href="#" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">Privacy Policy</a>
+        <a href="#" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">Terms of Service</a>
+        <a href="#" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">Support</a>
+        <a href="#" class="hover:text-primary transition-colors opacity-80 hover:opacity-100">Contact</a>
       </div>
-      <span class="text-[#514345] opacity-60">© 2024 Zen Editorial Japanese. All rights reserved.</span>
+      <span class="text-on-surface-variant opacity-60">&copy; 2024 Kouki Japanese. All rights reserved.</span>
     </div>
   </footer>
 

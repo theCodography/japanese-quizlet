@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kouki Japanese - Thư viện Ngữ pháp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#000767",
+              "surface": "#1A1C2E",
+              "on-primary": "#1A1C2E",
+              "surface-bright": "#23253a",
+              "primary-container": "#fccdd7",
+              "primary-fixed": "#ffd9df",
+              "on-secondary-container": "#bdc2ff",
+              "tertiary": "#99cbff",
+              "primary": "#FBB3C1",
+              "inverse-surface": "#f0f0f2",
+              "on-primary-container": "#360c19",
+              "tertiary-container": "#004a78",
+              "on-background": "#f0f0f2",
+              "on-tertiary": "#003355",
+              "surface-container-highest": "#33354d",
+              "surface-container-low": "#212338",
+              "on-error-container": "#ffdad6",
+              "outline": "#9c8d90",
+              "tertiary-fixed": "#cfe5ff",
+              "secondary-fixed": "#e0e0ff",
+              "surface-container": "#27293f",
+              "surface-tint": "#FBB3C1",
+              "on-surface-variant": "#d6c2c4",
+              "on-secondary": "#1A1C2E",
+              "secondary": "#bdc2ff",
+              "on-tertiary-fixed": "#001d34",
+              "on-tertiary-container": "#cfe5ff",
+              "primary-fixed-dim": "#fbb3c1",
+              "background": "#1A1C2E",
+              "surface-variant": "#514345",
+              "error": "#ffb4ab",
+              "on-error": "#690005",
+              "inverse-on-surface": "#1a1c1d",
+              "on-tertiary-fixed-variant": "#004a78",
+              "on-surface": "#f0f0f2",
+              "outline-variant": "#514345",
+              "secondary-container": "#343d96",
+              "surface-dim": "#111322",
+              "on-primary-fixed-variant": "#6b3743",
+              "on-secondary-fixed-variant": "#343d96",
+              "on-primary-fixed": "#360c19",
+              "inverse-primary": "#864e5a",
+              "error-container": "#93000a",
+              "surface-container-high": "#2d2f46",
+              "secondary-fixed-dim": "#bdc2ff",
+              "tertiary-fixed-dim": "#99cbff",
+              "surface-container-lowest": "#0c0e1a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #1A1C2E;
+            color: #f0f0f2;
+        }
+        .editorial-shadow {
+            box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4);
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1A1C2E]/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-primary font-headline">Kouki Japanese</div>
+<div class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] font-medium tracking-tight">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Grammar</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Flashcards</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">JLPT Countdown</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-white/5 rounded-full text-sm focus:ring-2 focus:ring-primary/50 w-64 text-on-surface" placeholder="Tìm kiếm ngữ pháp..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 rounded-full text-primary transition-all duration-300">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-sm font-medium">Profile</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Curriculum) -->
+<aside class="hidden lg:flex flex-col gap-2 py-6 h-screen w-64 fixed left-0 top-0 pt-20 bg-surface-container-lowest font-['Be_Vietnam_Pro'] text-sm z-40 border-r border-white/5">
+<div class="px-6 mb-6">
+<h2 class="text-primary font-bold text-lg">Curriculum</h2>
+<p class="text-slate-500 text-xs">Your Learning Path</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">filter_1</span>
+<span>JLPT N5</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">filter_2</span>
+<span>JLPT N4</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-primary/10 text-primary font-semibold rounded-r-full mr-4" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">filter_3</span>
+<span>JLPT N3</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pb-10">
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-semibold shadow-lg hover:brightness-110 transition-all">
+                Start Daily Lesson
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 pt-24 px-6 md:px-12 pb-20">
+<!-- Hero / Header Section -->
+<header class="mb-12 relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-12 text-on-surface">
+<div class="max-w-2xl relative z-10">
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold tracking-tight mb-4 text-primary">Thư viện Ngữ pháp</h1>
+<p class="text-lg opacity-80 font-light leading-relaxed">Khám phá cấu trúc tiếng Nhật từ N5 đến N3. Hệ thống hóa kiến thức với giải thích chi tiết và ví dụ thực tế theo phong cách tối giản.</p>
+</div>
+<!-- Abstract background shape -->
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+</header>
+<!-- Filters & Tools -->
+<section class="mb-10 flex flex-col md:flex-row gap-6 items-center justify-between">
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface font-medium hover:bg-primary/20 transition-colors">Tất cả</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors">N5</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors">N4</button>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-bold">N3</button>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative flex-1 md:w-80">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-white/5 rounded-xl focus:ring-2 focus:ring-primary/50 outline-none transition-all text-on-surface" placeholder="Tìm cấu trúc (vd: ~ている)" type="text"/>
+</div>
+<button class="p-3 bg-surface-container-low border border-white/5 rounded-xl text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</section>
+<!-- Grammar Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group bg-surface-container-low rounded-xl p-8 editorial-shadow border-l-4 border-secondary relative overflow-hidden transition-all hover:-translate-y-1 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-bold tracking-widest">JLPT N3</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors cursor-pointer">bookmark</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">～うちに</h3>
+<p class="text-primary/80 font-medium mb-6">Trong khi / Trong lúc...</p>
+<div class="p-4 bg-surface-container-lowest border border-white/5 rounded-lg text-sm leading-loose">
+<span class="font-bold text-primary">Cấu trúc:</span> V-る/V-ている/V-ない + うちe
+                </div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Cập nhật: 2 ngày trước</span>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-low rounded-xl p-8 editorial-shadow border-l-4 border-primary relative overflow-hidden transition-all hover:-translate-y-1 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-bold tracking-widest">JLPT N4</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors cursor-pointer">bookmark</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">～てください</h3>
+<p class="text-primary/80 font-medium mb-6">Hãy làm gì đó...</p>
+<div class="p-4 bg-surface-container-lowest border border-white/5 rounded-lg text-sm leading-loose">
+<span class="font-bold text-primary">Cấu trúc:</span> Động từ thể て + ください
+                </div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Cập nhật: 1 tuần trước</span>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-low rounded-xl p-8 editorial-shadow border-l-4 border-tertiary relative overflow-hidden transition-all hover:-translate-y-1 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary border border-tertiary/20 rounded-full text-xs font-bold tracking-widest">JLPT N5</span>
+<span class="material-symbols-outlined text-primary group-hover:text-primary transition-colors cursor-pointer" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">～があります</h3>
+<p class="text-primary/80 font-medium mb-6">Có (đồ vật/sự vật)...</p>
+<div class="p-4 bg-surface-container-lowest border border-white/5 rounded-lg text-sm leading-loose">
+<span class="font-bold text-primary">Cấu trúc:</span> Danh từ + が + あります
+                </div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Đã học xong</span>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4 (N3) -->
+<div class="group bg-surface-container-low rounded-xl p-8 editorial-shadow border-l-4 border-secondary relative overflow-hidden transition-all hover:-translate-y-1 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-xs font-bold tracking-widest">JLPT N3</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors cursor-pointer">bookmark</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">～はずだ</h3>
+<p class="text-primary/80 font-medium mb-6">Chắc chắn là...</p>
+<div class="p-4 bg-surface-container-lowest border border-white/5 rounded-lg text-sm leading-loose">
+<span class="font-bold text-primary">Cấu trúc:</span> Thể thông thường + はずだ
+                </div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Cập nhật: Mới</span>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 5 (N4) -->
+<div class="group bg-surface-container-low rounded-xl p-8 editorial-shadow border-l-4 border-primary relative overflow-hidden transition-all hover:-translate-y-1 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-bold tracking-widest">JLPT N4</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors cursor-pointer">bookmark</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">～たことがある</h3>
+<p class="text-primary/80 font-medium mb-6">Đã từng làm gì đó...</p>
+<div class="p-4 bg-surface-container-lowest border border-white/5 rounded-lg text-sm leading-loose">
+<span class="font-bold text-primary">Cấu trúc:</span> Động từ thể た + ことがある
+                </div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-xs text-outline font-medium">Gợi ý cho bạn</span>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Featured/Promo Bento Box -->
+<div class="col-span-1 md:col-span-2 xl:col-span-1 bg-tertiary-container rounded-xl p-8 relative overflow-hidden flex flex-col justify-between border border-white/5">
+<img alt="Mount Fuji through cherry blossoms" class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zfplPIqH3Pb0w9Vr5vraFX8PQyqiJJpVQqI_92Y4BIWuMLtyzzatut6vQroAwave2XswzTw1RMmcxDAXScJdzBZuO0yKcK1XLqimRZ8rnahLzp9TNU5jSeEhyNHNhhwCObKJtwX14GomA2WwzYI2fg2uJjU0YQ5CXJQJgJaMyQaK1rJ3q4_pK5Fm-Ke2YXKYNszGjWuA_At7ucurN5kBAkTzdzrhGRU6lgAjIbFcayWlxYAkeGkt4K5nIdbTWg93etapAWp1pQ1T"/>
+<div class="relative z-10">
+<h4 class="text-2xl font-headline font-extrabold text-on-tertiary-container mb-4">Master N3 Grammar</h4>
+<p class="text-on-tertiary-container/80 text-sm leading-relaxed mb-6">Hoàn thành lộ trình N3 với 120 cấu trúc quan trọng nhất. Nhận ngay bộ tài liệu tổng hợp khi bắt đầu bài học hôm nay.</p>
+</div>
+<button class="relative z-10 bg-on-tertiary-container text-tertiary-container font-bold py-4 rounded-xl hover:scale-105 transition-transform">
+                    Khám phá lộ trình N3
+                </button>
+</div>
+</section>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low border border-white/5 text-outline hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-2">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-on-primary font-bold">1</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low border border-white/5 text-on-surface-variant hover:bg-surface-container-high font-medium">2</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low border border-white/5 text-on-surface-variant hover:bg-surface-container-high font-medium">3</button>
+<span class="w-12 h-12 flex items-center justify-center text-outline">...</span>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low border border-white/5 text-on-surface-variant hover:bg-surface-container-high font-medium">12</button>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low border border-white/5 text-outline hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-lowest border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-lg font-black text-primary uppercase tracking-tighter">Kouki Japanese</div>
+<div class="font-['Be_Vietnam_Pro'] text-xs uppercase tracking-widest text-slate-500">© 2024 Kouki Japanese. All rights reserved.</div>
+</div>
+<div class="flex gap-8 font-['Be_Vietnam_Pro'] text-xs uppercase tracking-widest">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Support</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom NavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-[#1A1C2E]/90 backdrop-blur-lg border-t border-white/5 flex justify-around py-4 z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] uppercase font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-[10px] uppercase font-bold">Grammar</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">style</span>
+<span class="text-[10px] uppercase font-bold">Cards</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] uppercase font-bold">Profile</span>
+</button>
+</nav>
+</body></html>

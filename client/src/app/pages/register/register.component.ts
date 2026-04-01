@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -8,55 +8,47 @@ import { AuthService, RegisterPayload } from '../../core/services/auth.service';
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
-  template: `
-    <div class="register-container">
-      <h2>Đăng ký</h2>
-      <form (ngSubmit)="onSubmit()">
-        <div>
-          <label for="username">Tên người dùng</label>
-          <input id="username" type="text" [(ngModel)]="form.username" name="username" required placeholder="Tên của bạn" />
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" type="email" [(ngModel)]="form.email" name="email" required placeholder="email@example.com" />
-        </div>
-        <div>
-          <label for="password">Mật khẩu</label>
-          <input id="password" type="password" [(ngModel)]="form.password" name="password" required placeholder="••••••••" />
-        </div>
-        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-        <button type="submit" [disabled]="loading">
-          {{ loading ? 'Đang đăng ký...' : 'Đăng ký' }}
-        </button>
-      </form>
-      <p>Đã có tài khoản? <a routerLink="/login">Đăng nhập</a></p>
-    </div>
-  `,
-  styles: [`
-    .register-container { max-width: 400px; margin: 80px auto; padding: 24px; }
-    div { margin-bottom: 16px; }
-    label { display: block; margin-bottom: 4px; }
-    input { width: 100%; padding: 8px; box-sizing: border-box; }
-    button { width: 100%; padding: 10px; cursor: pointer; }
-    .error { color: red; }
-  `]
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   form: RegisterPayload = { email: '', username: '', password: '' };
-  loading = false;
-  errorMessage = '';
+  confirmPassword = '';
+  loading = signal(false);
+  errorMessage = signal('');
+  showPassword = signal(false);
+  showConfirmPassword = signal(false);
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  togglePassword() {
+    this.showPassword.set(!this.showPassword());
+  }
+
+  toggleConfirmPassword() {
+    this.showConfirmPassword.set(!this.showConfirmPassword());
+  }
+
   onSubmit(): void {
-    this.errorMessage = '';
-    this.loading = true;
+    this.errorMessage.set('');
+
+    if (this.form.password !== this.confirmPassword) {
+      this.errorMessage.set('Mat khau xac nhan khong khop');
+      return;
+    }
+
+    if (this.form.password.length < 6) {
+      this.errorMessage.set('Mat khau phai co it nhat 6 ky tu');
+      return;
+    }
+
+    this.loading.set(true);
 
     this.authService.register(this.form).subscribe({
       next: () => this.router.navigate(['/dashboard']),
       error: (err) => {
-        this.errorMessage = err?.error?.message || 'Đăng ký thất bại';
-        this.loading = false;
+        this.errorMessage.set(err?.error?.message || 'Dang ky that bai');
+        this.loading.set(false);
       }
     });
   }

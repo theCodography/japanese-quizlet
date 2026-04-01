@@ -125,7 +125,7 @@
       @if ((deck()?.cards?.length ?? 0) > 0) {
         <div class="flex flex-col gap-3">
           @for (card of previewCards; track card.id; let i = $index) {
-            <div class="bg-white rounded-2xl border border-outline-variant/40 px-6 py-4
+            <div class="bg-surface-container-low rounded-2xl border border-outline-variant/40 px-6 py-4
                         flex items-center gap-6 hover:shadow-sm hover:border-primary/20 transition-all group">
               <!-- Index -->
               <span class="w-6 text-xs font-bold text-outline flex-shrink-0 text-center">
