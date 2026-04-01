@@ -21,7 +21,9 @@
       "Bash(git -C \"E:/Workspace/japan-quizlet\" status)",
       "Bash(find E:/Workspace/japan-quizlet/client/src/app -type f -name *)",
       "Bash(ls -la \"E:\\\\Workspace\\\\japan-quizlet\\\\client\\\\src\\\\environments\"\" 2>/dev/null || echo \"Directory does not exist \")",
-      "Bash(find /e/Workspace/japan-quizlet -maxdepth 2 -not -path */node_modules* -not -path */dist* -type d)"
+      "Bash(find /e/Workspace/japan-quizlet -maxdepth 2 -not -path */node_modules* -not -path */dist* -type d)",
+      "Bash(gh auth:*)",
+      "Bash(npx vercel:*)"
     ]
   }
 }
