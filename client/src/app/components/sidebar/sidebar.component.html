@@ -2,59 +2,60 @@
      ZEN EDITORIAL – ASYMMETRIC LATERAL NAVIGATION (SIDEBAR)
      ══════════════════════════════════════════════════════════════════════ -->
 <aside class="fixed left-0 top-0 h-screen w-16 hover:w-64 group/aside transition-all duration-500 bg-surface border-r border-outline-variant/10 z-40 overflow-hidden pt-20 flex flex-col shadow-lg shadow-on-surface/5">
-  
+
   <!-- Sidebar Menu Items -->
   <nav class="flex-1 px-4 py-8 flex flex-col gap-4">
-    
-    <!-- User Profile Peek (Asymmetric Balance Moment) -->
-    <div class="flex items-center gap-4 mb-10 overflow-hidden">
-      <div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 ring-4 ring-primary-container/20 group-hover/aside:ring-8 transition-all duration-500">
-        <img alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtzBxkOn3nPO2sIBoMbNWIwEMqN6USH8bKeRznpCmeb-FWz8tWQ7AMrPxmlFYWAaIC1tbmPVV5VKWGxcHssDLtNQTjKDKBWwAU9U6b73dd89d1cWIT_WPlR1QHFWJjTeFjf0Sk2V07gEE_abUlsRDsvfRXC6kwotKxr5oGHCqPyEejb1RRdLobzzAdigIO-20mfTyYppu_QgHAcOIcw3D4q6xSl67Or9uCET0FOJcTXM6v7WbDnoqkWUBqfMNjxCYBrJqoUd1TrPNZ"
-             class="w-full h-full object-cover rounded-full shadow-inner">
+
+    <!-- User Profile Peek -->
+    <a routerLink="/profile" class="flex items-center gap-4 mb-10 overflow-hidden group/user cursor-pointer">
+      <div class="w-8 h-8 rounded-full flex-shrink-0 ring-4 ring-primary-container/20 group-hover/aside:ring-8 transition-all duration-500 overflow-hidden">
+        @if (userAvatarUrl()) {
+          <img [src]="userAvatarUrl()" [alt]="userName()" class="w-full h-full object-cover rounded-full">
+        } @else {
+          <div class="w-full h-full flex items-center justify-center bg-primary-fixed text-on-primary-fixed font-bold text-sm">
+            {{ userInitials() }}
+          </div>
+        }
       </div>
       <div class="opacity-0 group-hover/aside:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        <p class="text-xs font-bold text-primary font-headline tracking-tight">Cá nhân</p>
-        <p class="text-[10px] text-on-surface-variant font-body">Master Level: N3</p>
+        <p class="text-xs font-bold text-primary font-headline tracking-tight">{{ userName() }}</p>
+        <p class="text-[10px] text-on-surface-variant font-body group-hover/user:underline">Xem hồ sơ</p>
       </div>
-    </div>
+    </a>
 
-    <!-- Category: Curriculum -->
+    <!-- Category: Navigation -->
     <div class="flex flex-col gap-2">
       <div class="px-2 mb-2 group-hover/aside:block hidden animate-[fadeIn_0.5s]">
-        <span class="text-[10px] font-bold text-outline tracking-widest uppercase opacity-60">Lộ trình học tập</span>
+        <span class="text-[10px] font-bold text-outline tracking-widest uppercase opacity-60">Điều hướng</span>
       </div>
 
-      <a routerLink="/n5" routerLinkActive="bg-surface-container text-primary font-bold shadow-sm"
+      <a routerLink="/dashboard" routerLinkActive="group-hover/aside:bg-surface-container text-primary font-bold group-hover/aside:shadow-sm"
+         [routerLinkActiveOptions]="{exact: true}"
          class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined flex-shrink-0">filter_1</span>
-        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">JLPT N5 (Basic)</span>
+        <span class="material-symbols-outlined flex-shrink-0">home</span>
+        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">Dashboard</span>
       </a>
 
-      <a routerLink="/n4" routerLinkActive="bg-surface-container text-primary font-bold shadow-sm"
+      <a routerLink="/decks" routerLinkActive="group-hover/aside:bg-surface-container text-primary font-bold group-hover/aside:shadow-sm"
          class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined flex-shrink-0">filter_2</span>
-        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">JLPT N4 (Beginner)</span>
+        <span class="material-symbols-outlined flex-shrink-0">style</span>
+        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">Flashcards</span>
       </a>
 
-      <a routerLink="/n3" routerLinkActive="bg-primary-container text-primary-on-container font-bold shadow-sm"
-         class="flex items-center gap-4 p-2 bg-secondary/10 text-secondary font-bold rounded-xl transition-all duration-300 group-hover/aside:bg-secondary/10">
-        <span class="material-symbols-outlined flex-shrink-0">filter_3</span>
-        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">JLPT N3 (Middle)</span>
+      <a routerLink="/grammar" routerLinkActive="group-hover/aside:bg-surface-container text-primary font-bold group-hover/aside:shadow-sm"
+         class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all duration-300">
+        <span class="material-symbols-outlined flex-shrink-0">menu_book</span>
+        <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap font-headline tracking-tighter">Grammar</span>
       </a>
     </div>
 
-    <!-- Category: Quick Stats (Bottom Placement) -->
+    <!-- Bottom Actions -->
     <div class="mt-auto pt-6 flex flex-col gap-4 border-t border-outline-variant/10">
-      <div class="opacity-0 group-hover/aside:opacity-100 transition-opacity duration-300">
-        <button class="w-full py-3 bg-secondary text-white rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-secondary/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all">
-          Daily Stats
-        </button>
-      </div>
-      
-      <div class="flex items-center gap-4 p-2 text-error/60 hover:text-error cursor-pointer transition-colors overflow-hidden">
+      <button (click)="logout()"
+              class="flex items-center gap-4 p-2 text-error/60 hover:text-error hover:bg-error-container/10 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden">
         <span class="material-symbols-outlined flex-shrink-0">logout</span>
         <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">Đăng xuất</span>
-      </div>
+      </button>
     </div>
 
   </nav>
