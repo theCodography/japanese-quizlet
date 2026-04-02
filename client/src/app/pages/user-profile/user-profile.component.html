@@ -1,0 +1,177 @@
+<div class="min-h-screen flex flex-col" [class.dark]="true">
+  <!-- Hidden file input for avatar -->
+  <input type="file" id="avatarInput" accept="image/*" class="hidden" (change)="onAvatarChange($event)" />
+
+  <main class="mt-24 mb-20 flex-grow max-w-7xl mx-auto px-6 md:px-12 w-full">
+
+    <!-- Profile Header -->
+    <header class="flex flex-col md:flex-row items-center md:items-end gap-8 mb-16">
+      <div class="relative group cursor-pointer" (click)="triggerAvatarUpload()">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#ffd9df] to-[#bac3ff] opacity-20 blur-xl rounded-full"></div>
+        @if (avatarUrl()) {
+          <img [src]="avatarUrl()" alt="Avatar"
+            class="relative w-32 h-32 md:w-44 md:h-44 rounded-full object-cover shadow-[0_12px_40px_rgba(11,13,30,0.4)] ring-4 ring-[#181a2c]" />
+        } @else {
+          <div class="relative w-32 h-32 md:w-44 md:h-44 rounded-full bg-[#2f3f92] flex items-center justify-center shadow-[0_12px_40px_rgba(11,13,30,0.4)] ring-4 ring-[#181a2c]">
+            <span class="text-5xl font-bold text-[#bac3ff]">{{ getInitials() }}</span>
+          </div>
+        }
+        <button class="absolute bottom-2 right-2 bg-[#fbb3c1] text-[#50212d] p-2 rounded-full shadow-lg hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-sm">edit</span>
+        </button>
+      </div>
+
+      <div class="text-center md:text-left flex-grow">
+        <div class="inline-flex items-center px-3 py-1 rounded-full bg-[#2f3f92]/30 text-[#bac3ff] text-xs font-bold uppercase tracking-widest mb-4">
+          JLPT N3 CANDIDATE
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#e0e0fa] mb-2">{{ fullName() || 'User' }}</h1>
+        <p class="text-[#d6c2c4] font-medium">{{ email() }}</p>
+      </div>
+
+      <div class="hidden lg:block">
+        <div class="bg-[#181a2c] p-6 rounded-2xl text-center">
+          <div class="text-[#fbb3c1] text-3xl font-black mb-1">N3</div>
+          <div class="text-[#d6c2c4] text-[10px] font-bold uppercase tracking-widest">Level Badge</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Bento Grid Stats -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <!-- Streak Card -->
+      <div class="bg-[#181a2c] p-8 rounded-2xl relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#fbb3c1]" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+          <span class="text-xs font-bold tracking-widest text-[#d6c2c4] uppercase">Daily Momentum</span>
+        </div>
+        <div class="text-4xl font-bold text-[#e0e0fa] mb-1">Streak: {{ streak() }} days</div>
+        <p class="text-[#d6c2c4] text-sm leading-relaxed">Top 5% of active learners this week. Keep the flame alive.</p>
+      </div>
+
+      <!-- Lessons Card -->
+      <div class="bg-[#181a2c] p-8 rounded-2xl relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1">menu_book</span>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#bac3ff]" style="font-variation-settings: 'FILL' 1">menu_book</span>
+          <span class="text-xs font-bold tracking-widest text-[#d6c2c4] uppercase">Knowledge Base</span>
+        </div>
+        <div class="text-4xl font-bold text-[#e0e0fa] mb-1">Lessons Completed: {{ lessonsCompleted() }}</div>
+        <p class="text-[#d6c2c4] text-sm leading-relaxed">12 more lessons until you reach the next milestone.</p>
+      </div>
+
+      <!-- Countdown Card -->
+      <div class="bg-[#27293b] p-8 rounded-2xl relative overflow-hidden group ring-1 ring-[#fbb3c1]/10">
+        <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1">event</span>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#fbb3c1]" style="font-variation-settings: 'FILL' 1">event</span>
+          <span class="text-xs font-bold tracking-widest text-[#d6c2c4] uppercase">The Final Push</span>
+        </div>
+        <div class="text-4xl font-bold text-[#e0e0fa] mb-1">JLPT N3 Countdown: {{ jlptDaysLeft() }} days</div>
+        <div class="w-full bg-[#1c1e30] mt-4 h-1 rounded-full overflow-hidden">
+          <div class="bg-[#fbb3c1] h-full transition-all" [style.width.%]="jlptProgress()"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Account Settings -->
+    <section class="max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold tracking-tight text-[#e0e0fa] mb-2">Account Settings</h2>
+        <p class="text-[#d6c2c4] text-sm">Manage your personal atelier preferences and security.</p>
+      </div>
+
+      <div class="bg-[#181a2c] rounded-2xl p-8 md:p-12 space-y-10">
+        <!-- Name & Email -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <label class="text-[11px] font-bold tracking-widest text-[#d6c2c4] uppercase ml-1">Full Name</label>
+            <input [ngModel]="fullName()" (ngModelChange)="fullName.set($event)"
+              class="w-full bg-[#323347] border-none rounded-full px-6 py-3 text-[#e0e0fa] focus:ring-2 focus:ring-[#fbb3c1]/30 transition-all outline-none"
+              type="text" [placeholder]="fullName() || 'Your name'" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-[11px] font-bold tracking-widest text-[#d6c2c4] uppercase ml-1">Email Address</label>
+            <input [value]="email()" readonly
+              class="w-full bg-[#323347] border-none rounded-full px-6 py-3 text-[#e0e0fa] opacity-60 cursor-not-allowed outline-none"
+              type="email" />
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="pt-6 border-t border-[#514345]/20">
+          <h3 class="text-lg font-semibold text-[#e0e0fa] mb-6">Security & Privacy</h3>
+          <button class="flex items-center gap-4 text-[#bac3ff] hover:text-[#fbb3c1] transition-colors group">
+            <span class="material-symbols-outlined group-hover:rotate-12 transition-transform">lock</span>
+            <span class="font-medium">Change Account Password</span>
+          </button>
+        </div>
+
+        <!-- Notifications -->
+        <div class="pt-6 border-t border-[#514345]/20">
+          <h3 class="text-lg font-semibold text-[#e0e0fa] mb-6">Notification Settings</h3>
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-[#e0e0fa] font-medium">Study Reminders</div>
+                <div class="text-[#d6c2c4] text-xs">Daily nudge to keep your streak alive.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" [checked]="studyReminders()" (change)="studyReminders.set(!studyReminders())" class="sr-only peer" />
+                <div class="w-11 h-6 bg-[#323347] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#d6c2c4] after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#fbb3c1] peer-checked:after:bg-[#50212d]"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-[#e0e0fa] font-medium">Community Updates</div>
+                <div class="text-[#d6c2c4] text-xs">New lessons and dictionary additions.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" [checked]="communityUpdates()" (change)="communityUpdates.set(!communityUpdates())" class="sr-only peer" />
+                <div class="w-11 h-6 bg-[#323347] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#d6c2c4] after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#fbb3c1] peer-checked:after:bg-[#50212d]"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success/Error messages -->
+        @if (saveSuccess()) {
+          <div class="text-green-400 text-sm text-center">Changes saved successfully!</div>
+        }
+        @if (saveError()) {
+          <div class="text-red-400 text-sm text-center">{{ saveError() }}</div>
+        }
+
+        <!-- Save Button -->
+        <div class="pt-10 flex justify-end">
+          <button (click)="saveChanges()" [disabled]="saving()"
+            class="bg-[#fbb3c1] text-[#50212d] px-10 py-3 rounded-full font-bold hover:scale-105 active:scale-95 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+            {{ saving() ? 'Saving...' : 'Save Changes' }}
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#181a2c] w-full py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm">
+      <div class="mb-8 md:mb-0">
+        <div class="text-lg font-semibold text-[#fbb3c1] mb-2">Kouki Japanese</div>
+        <div class="text-[#e0e0fa]/60">© 2024 Kouki Japanese. The Nocturnal Atelier.</div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <a class="text-[#e0e0fa]/60 hover:text-[#fbb3c1] transition-colors" href="#">Privacy Policy</a>
+        <a class="text-[#e0e0fa]/60 hover:text-[#fbb3c1] transition-colors" href="#">Terms of Service</a>
+        <a class="text-[#e0e0fa]/60 hover:text-[#fbb3c1] transition-colors" href="#">Support</a>
+      </div>
+    </div>
+  </footer>
+</div>

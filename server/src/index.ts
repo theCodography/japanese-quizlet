@@ -31,9 +31,11 @@ import learnRoutes from './routes/learn.routes';
 import deckRoutes from './routes/deck.routes';
 import grammarRoutes from './routes/grammar.routes';
 import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
 
 // -- Gắn Router --
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/learn', learnRoutes);
 app.use('/api/decks', deckRoutes);
 app.use('/api/grammar', grammarRoutes);

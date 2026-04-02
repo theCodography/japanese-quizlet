@@ -23,6 +23,10 @@ export const routes: Routes = [
       { path: 'decks', component: DecksListComponent },
       { path: 'decks/:id', component: DeckDetailComponent },
       { path: 'grammar', component: GrammarLibraryComponent },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/user-profile/user-profile.component').then(m => m.UserProfileComponent)
+      },
     ]
   },
   { path: 'learn/:id', component: LearnComponent, canActivate: [authGuard] },
