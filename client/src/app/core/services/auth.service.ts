@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 export interface AuthUser {
   id: string;
   email: string;
-  username: string;
+  name: string;
   avatarUrl?: string;
 }
 
@@ -18,7 +18,7 @@ export interface LoginPayload {
 
 export interface RegisterPayload {
   email: string;
-  username: string;
+  name: string;
   password: string;
 }
 

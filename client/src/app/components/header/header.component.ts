@@ -23,7 +23,7 @@ export class HeaderComponent {
 
   get userName(): string {
     const user = this.authService.currentUser();
-    return user?.username || user?.email || 'User';
+    return user?.name || user?.email || 'User';
   }
 
   get userInitials(): string {

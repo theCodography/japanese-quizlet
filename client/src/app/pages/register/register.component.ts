@@ -12,7 +12,7 @@ import { AuthService, RegisterPayload } from '../../core/services/auth.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  form: RegisterPayload = { email: '', username: '', password: '' };
+  form: RegisterPayload = { email: '', name: '', password: '' };
   confirmPassword = '';
   loading = signal(false);
   errorMessage = signal('');

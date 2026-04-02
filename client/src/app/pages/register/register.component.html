@@ -65,7 +65,7 @@
               <div class="relative group">
                 <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline
                              group-focus-within:text-primary transition-colors">person</span>
-                <input id="fullname" type="text" [(ngModel)]="form.username" name="username" required
+                <input id="fullname" type="text" [(ngModel)]="form.name" name="name" required
                   placeholder="Nguyen Van A" class="w-full pl-14 pr-4 py-4 bg-surface-container-low border-none rounded-full
                          focus:ring-2 focus:ring-primary/50 focus:bg-surface-container-high
                          transition-all placeholder:text-outline/50 text-on-surface"
@@ -142,7 +142,7 @@
             <!-- Submit -->
             <div class="pt-4">
               <button type="submit"
-                [disabled]="loading() || !form.email || !form.username || !form.password || !confirmPassword" class="w-full py-4 rounded-full font-bold text-lg
+                [disabled]="loading() || !form.email || !form.name || !form.password || !confirmPassword" class="w-full py-4 rounded-full font-bold text-lg
                        shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95
                        transition-all duration-300
                        disabled:opacity-50 disabled:scale-100 disabled:shadow-none
