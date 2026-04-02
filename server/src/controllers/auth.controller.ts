@@ -53,6 +53,7 @@ export const registerUser = async (req: Request, res: Response) => {
       data: { token, user },
     });
   } catch (error: any) {
+    console.error('[registerUser] Error:', error);
     res.status(500).json({ success: false, message: 'Lỗi máy chủ' });
   }
 };
@@ -87,6 +88,7 @@ export const loginUser = async (req: Request, res: Response) => {
       data: { token, user: userWithoutPassword },
     });
   } catch (error: any) {
+    console.error('[loginUser] Error:', error);
     res.status(500).json({ success: false, message: 'Lỗi máy chủ' });
   }
 };
