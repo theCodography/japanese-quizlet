@@ -6,7 +6,7 @@ export const getMe = async (req: Request, res: Response) => {
     const userId = req.user?.userId;
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { id: true, name: true, email: true, createdAt: true }
+      select: { id: true, name: true, email: true, avatar: true, createdAt: true }
     });
     if (!user) return res.status(404).json({ error: 'User not found' });
     res.json(user);
@@ -18,11 +18,14 @@ export const getMe = async (req: Request, res: Response) => {
 export const updateMe = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const { name } = req.body;
+    const { name, avatar } = req.body;
     const user = await prisma.user.update({
       where: { id: userId },
-      data: { name },
-      select: { id: true, name: true, email: true, createdAt: true }
+      data: {
+        ...(name !== undefined && { name }),
+        ...(avatar !== undefined && { avatar })
+      },
+      select: { id: true, name: true, email: true, avatar: true, createdAt: true }
     });
     res.json(user);
   } catch (error) {

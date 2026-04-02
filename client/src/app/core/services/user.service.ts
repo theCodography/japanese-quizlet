@@ -6,6 +6,7 @@ export interface UserProfile {
   id: string;
   name: string;
   email: string;
+  avatar?: string;
   createdAt: string;
 }
 
@@ -20,7 +21,7 @@ export class UserService {
     return this.http.get<UserProfile>(`${this.apiUrl}/users/me`);
   }
 
-  updateProfile(data: { name: string }) {
+  updateProfile(data: { name?: string; avatar?: string }) {
     return this.http.put<UserProfile>(`${this.apiUrl}/users/me`, data);
   }
 }

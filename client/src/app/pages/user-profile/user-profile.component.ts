@@ -34,6 +34,7 @@ export class UserProfileComponent implements OnInit {
       next: (profile) => {
         this.fullName.set(profile.name || '');
         this.email.set(profile.email || '');
+        this.avatarUrl.set(profile.avatar || null);
         this.loading.set(false);
       },
       error: () => this.loading.set(false)
@@ -48,7 +49,14 @@ export class UserProfileComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (e) => this.avatarUrl.set(e.target?.result as string);
+    reader.onload = (e) => {
+      const base64 = e.target?.result as string;
+      this.avatarUrl.set(base64);
+      this.userService.updateProfile({ avatar: base64 }).subscribe({
+        next: () => console.log('Avatar saved'),
+        error: (err) => console.error('Avatar save failed', err)
+      });
+    };
     reader.readAsDataURL(file);
   }
 
