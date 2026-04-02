@@ -1,4 +1,12 @@
 <div class="min-h-screen flex flex-col" [class.dark]="true">
+  <!-- Error Dialog -->
+  @if (errorDialog()) {
+    <app-error-dialog
+      [title]="errorDialog()!.title"
+      [message]="errorDialog()!.message"
+      (close)="errorDialog.set(null)" />
+  }
+
   <!-- Hidden file input for avatar -->
   <input type="file" id="avatarInput" accept="image/*" class="hidden" (change)="onAvatarChange($event)" />
 
