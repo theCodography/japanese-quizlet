@@ -8,7 +8,7 @@ export interface AuthUser {
   id: string;
   email: string;
   name: string;
-  avatarUrl?: string;
+  avatar?: string;
 }
 
 export interface LoginPayload {
@@ -43,15 +43,15 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(payload: LoginPayload): Observable<ApiAuthResponse> {
-    return this.http.post<ApiAuthResponse>(`${environment.apiUrl}/auth/login`, payload).pipe(
-      tap(res => this.saveSession(res.data))
-    );
+    return this.http
+      .post<ApiAuthResponse>(`${environment.apiUrl}/auth/login`, payload)
+      .pipe(tap((res) => this.saveSession(res.data)));
   }
 
   register(payload: RegisterPayload): Observable<ApiAuthResponse> {
-    return this.http.post<ApiAuthResponse>(`${environment.apiUrl}/auth/register`, payload).pipe(
-      tap(res => this.saveSession(res.data))
-    );
+    return this.http
+      .post<ApiAuthResponse>(`${environment.apiUrl}/auth/register`, payload)
+      .pipe(tap((res) => this.saveSession(res.data)));
   }
 
   logout(): void {

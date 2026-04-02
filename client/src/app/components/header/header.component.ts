@@ -10,7 +10,7 @@ import { UserService } from '../../core/services/user.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   authService = inject(AuthService);
@@ -31,7 +31,7 @@ export class HeaderComponent {
   }
 
   get userAvatarUrl(): string | null {
-    return this.authService.currentUser()?.avatarUrl || null;
+    return this.authService.currentUser()?.avatar || null;
   }
 
   toggleTheme() {
