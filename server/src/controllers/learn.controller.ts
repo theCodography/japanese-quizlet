@@ -25,10 +25,16 @@ export const getDeckForLearning = async (req: Request, res: Response) => {
       });
     }
 
+    const userId = req.user?.userId;
+
     const deck = await prisma.deck.findUnique({
       where: { id },
       include: {
-        cards: true
+        cards: {
+          include: {
+            progress: userId ? { where: { userId }, take: 1 } : false,
+          },
+        },
       }
     });
 
@@ -36,8 +42,15 @@ export const getDeckForLearning = async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, message: 'Không tìm thấy bộ thẻ', data: null });
     }
 
-    // Đảo ngẫu nhiên vị trí các thẻ (Shuffle)
-    const shuffledCards = [...deck.cards].sort(() => 0.5 - Math.random());
+    // Flatten progress + shuffle
+    const cardsWithProgress = deck.cards.map((card: any) => {
+      const prog = card.progress?.[0] || null;
+      return {
+        ...card,
+        progress: prog ? { rating: prog.rating, starred: prog.starred } : null,
+      };
+    });
+    const shuffledCards = [...cardsWithProgress].sort(() => 0.5 - Math.random());
     const responseData = { ...deck, cards: shuffledCards };
 
     res.json({ success: true, message: 'Lấy dữ liệu thẻ học thành công', data: responseData });

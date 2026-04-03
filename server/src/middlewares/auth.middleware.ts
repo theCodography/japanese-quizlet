@@ -14,6 +14,23 @@ declare global {
   }
 }
 
+/** Optional auth — sets req.user if token valid, continues regardless */
+export const optionalAuth = (req: Request, _res: Response, next: NextFunction): void => {
+  const authHeader = req.headers.authorization;
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    const secret = process.env.JWT_SECRET;
+    if (secret) {
+      try {
+        req.user = jwt.verify(token, secret) as AuthPayload;
+      } catch {
+        // ignore invalid token
+      }
+    }
+  }
+  next();
+};
+
 export const authenticate = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization;
 

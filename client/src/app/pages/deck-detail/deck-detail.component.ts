@@ -1,4 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeckService } from '../../services/deck.service';
@@ -7,7 +8,7 @@ import { Card } from '../../models/card.model';
 
 @Component({
   selector: 'app-deck-detail',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './deck-detail.component.html',
   styleUrl: './deck-detail.component.css'
 })

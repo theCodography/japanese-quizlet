@@ -58,17 +58,37 @@ export const createDeck = async (req: Request, res: Response) => {
 export const getDeckById = async (req: Request, res: Response) => {
   try {
     const id = req.params['id'] as string;
+    const userId = req.user?.userId;
+
     const deck = await prisma.deck.findUnique({
       where: { id },
       include: {
-        cards: { orderBy: { createdAt: 'asc' } },
+        cards: {
+          orderBy: { createdAt: 'asc' },
+          include: {
+            progress: userId ? { where: { userId }, take: 1 } : false,
+          },
+        },
         _count: { select: { cards: true } }
       }
     });
     if (!deck) {
       return res.status(404).json({ success: false, message: 'Không tìm thấy bộ thẻ', data: null });
     }
-    res.json({ success: true, message: 'Lấy dữ liệu bộ thẻ thành công', data: deck });
+
+    // Flatten progress array to single object for each card
+    const data = {
+      ...deck,
+      cards: deck.cards.map((card: any) => {
+        const prog = card.progress?.[0] || null;
+        return {
+          ...card,
+          progress: prog ? { rating: prog.rating, starred: prog.starred } : null,
+        };
+      }),
+    };
+
+    res.json({ success: true, message: 'Lấy dữ liệu bộ thẻ thành công', data });
   } catch (error) {
     console.error('getDeckById Error:', error);
     res.status(500).json({ success: false, message: 'Lỗi nội bộ Server', data: null });

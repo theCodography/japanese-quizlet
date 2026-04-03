@@ -32,6 +32,7 @@ import deckRoutes from './routes/deck.routes';
 import grammarRoutes from './routes/grammar.routes';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
+import cardProgressRoutes from './routes/card-progress.routes';
 
 // -- Gắn Router --
 app.use('/api/auth', authRoutes);
@@ -39,6 +40,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/learn', learnRoutes);
 app.use('/api/decks', deckRoutes);
 app.use('/api/grammar', grammarRoutes);
+app.use('/api/cards', cardProgressRoutes);
 
 // -- API Dashboard Stats (Mock / Partial implement) --
 app.get('/api/dashboard/stats', async (req, res) => {
