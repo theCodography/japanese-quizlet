@@ -131,6 +131,11 @@
               <span class="w-6 text-xs font-bold text-outline flex-shrink-0 text-center">
                 {{ i + 1 }}
               </span>
+              <!-- Star -->
+              @if (card.progress?.starred) {
+                <span class="material-symbols-outlined text-amber-400 text-lg flex-shrink-0"
+                      style="font-variation-settings: 'FILL' 1;">star</span>
+              }
               <!-- Term -->
               <div class="w-36 flex-shrink-0">
                 <span class="text-xl font-bold text-on-surface" style="font-family: 'Plus Jakarta Sans', sans-serif;">
@@ -150,6 +155,17 @@
                   </p>
                 }
               </div>
+              <!-- Rating badge -->
+              @if (card.progress?.rating; as rating) {
+                <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex-shrink-0"
+                      [ngClass]="{
+                        'bg-error/20 text-error': rating === 'hard',
+                        'bg-primary/20 text-primary': rating === 'good',
+                        'bg-secondary/20 text-secondary': rating === 'easy'
+                      }">
+                  {{ rating === 'hard' ? 'Hard' : rating === 'good' ? 'Good' : 'Easy' }}
+                </span>
+              }
             </div>
           }
         </div>

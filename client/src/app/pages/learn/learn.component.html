@@ -35,16 +35,16 @@
       </div>
     </div>
     <a routerLink="/dashboard" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
-      <span class="material-symbols-outlined flex-shrink-0">filter_1</span>
-      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">JLPT N5</span>
+      <span class="material-symbols-outlined flex-shrink-0">home</span>
+      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">Dashboard</span>
     </a>
-    <a routerLink="/dashboard" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
-      <span class="material-symbols-outlined flex-shrink-0">filter_2</span>
-      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">JLPT N4</span>
+    <a routerLink="/decks" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
+      <span class="material-symbols-outlined flex-shrink-0">style</span>
+      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">Flashcards</span>
     </a>
-    <a routerLink="/dashboard" class="flex items-center gap-4 p-2 bg-primary-container/30 text-primary font-semibold rounded-lg">
-      <span class="material-symbols-outlined flex-shrink-0">filter_3</span>
-      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm whitespace-nowrap">JLPT N3</span>
+    <a routerLink="/grammar" class="flex items-center gap-4 p-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
+      <span class="material-symbols-outlined flex-shrink-0">menu_book</span>
+      <span class="opacity-0 group-hover/aside:opacity-100 transition-opacity text-sm font-semibold whitespace-nowrap">Grammar</span>
     </a>
   </div>
 </aside>
@@ -89,32 +89,58 @@
         </div>
       </div>
 
-      <!-- FLASHCARD CONTAINER -->
-      <div class="relative w-full max-w-3xl group" style="aspect-ratio: 16/10;">
+      <!-- FLASHCARD CONTAINER with 3D Flip -->
+      <div class="relative w-full max-w-3xl card-scene"
+           [class.slide-out]="slideDirection() === 'slide-out'"
+           [class.slide-in]="slideDirection() === 'slide-in'"
+           style="aspect-ratio: 16/10;">
         <!-- Shadow layer -->
         <div class="absolute inset-0 bg-surface-container translate-x-3 translate-y-3 rounded-2xl -z-10"></div>
 
-        <!-- Main Card -->
-        <div class="relative w-full h-full bg-surface-container-low rounded-2xl shadow-[0_32px_64px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden cursor-pointer"
-             (click)="revealCard()">
+        <!-- 3D Flip wrapper -->
+        <div class="card-flipper cursor-pointer"
+             [class.flipped]="isFlipped()"
+             (click)="flipCard()">
 
-          <!-- Card Header -->
-          <div class="p-6 flex justify-between items-start flex-shrink-0">
-            <div class="flex gap-2">
-              <span class="px-3 py-1 bg-secondary/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full">
-                JLPT N3
-              </span>
-              <span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">
-                Vocabulary
-              </span>
+          <!-- ════ FRONT FACE ════ -->
+          <div class="card-face bg-surface-container-low shadow-[0_32px_64px_rgba(0,0,0,0.3)] flex flex-col">
+
+            <!-- Card Header -->
+            <div class="p-6 flex justify-between items-start flex-shrink-0">
+              <div class="flex gap-2 items-center">
+                <span class="px-3 py-1 bg-secondary/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full">
+                  JLPT N3
+                </span>
+                <span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">
+                  Vocabulary
+                </span>
+                <!-- Rating badge -->
+                @if (currentCardRating(); as rating) {
+                  <span class="px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full"
+                        [ngClass]="getRatingClasses(rating)">
+                    {{ getRatingLabel(rating) }}
+                  </span>
+                }
+              </div>
+              <div class="flex items-center gap-2">
+                <!-- Star button -->
+                <button class="hover:scale-110 transition-transform"
+                        [class.star-pop]="isCurrentCardStarred()"
+                        (click)="$event.stopPropagation(); toggleStar()">
+                  <span class="material-symbols-outlined text-xl"
+                        [class.text-amber-400]="isCurrentCardStarred()"
+                        [class.text-outline]="!isCurrentCardStarred()"
+                        [style.font-variation-settings]="starFillStyle">
+                    star
+                  </span>
+                </button>
+                <button class="text-outline hover:text-primary transition-colors" (click)="$event.stopPropagation()">
+                  <span class="material-symbols-outlined">volume_up</span>
+                </button>
+              </div>
             </div>
-            <button class="text-outline hover:text-primary transition-colors" (click)="$event.stopPropagation()">
-              <span class="material-symbols-outlined">volume_up</span>
-            </button>
-          </div>
 
-          <!-- Card Body: FRONT -->
-          @if (!isRevealed()) {
+            <!-- Front Body -->
             <div class="flex-1 flex flex-col items-center justify-center px-12 text-center">
               <div class="relative">
                 <div class="absolute -top-10 -left-10 text-8xl font-black text-primary/5 select-none pointer-events-none leading-none">
@@ -131,10 +157,53 @@
                 }
               </div>
             </div>
-          }
 
-          <!-- Card Body: BACK -->
-          @if (isRevealed()) {
+            <!-- Flip prompt -->
+            <div class="py-5 flex justify-center border-t border-outline-variant/20 flex-shrink-0">
+              <span class="flex items-center gap-2 text-on-surface-variant text-sm font-medium tracking-tight"
+                    style="font-family: 'Be Vietnam Pro', sans-serif;">
+                Nhấn để lật thẻ
+                <span class="material-symbols-outlined text-lg">sync</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- ════ BACK FACE ════ -->
+          <div class="card-face card-face--back bg-surface-container-low shadow-[0_32px_64px_rgba(0,0,0,0.3)] flex flex-col">
+
+            <!-- Card Header (back) -->
+            <div class="p-6 flex justify-between items-start flex-shrink-0">
+              <div class="flex gap-2 items-center">
+                <span class="px-3 py-1 bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest rounded-full">
+                  Nghĩa
+                </span>
+                <!-- Rating badge -->
+                @if (currentCardRating(); as rating) {
+                  <span class="px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full"
+                        [ngClass]="getRatingClasses(rating)">
+                    {{ getRatingLabel(rating) }}
+                  </span>
+                }
+              </div>
+              <div class="flex items-center gap-2">
+                <!-- Star button -->
+                <button class="hover:scale-110 transition-transform"
+                        [class.star-pop]="isCurrentCardStarred()"
+                        (click)="$event.stopPropagation(); toggleStar()">
+                  <span class="material-symbols-outlined text-xl"
+                        [class.text-amber-400]="isCurrentCardStarred()"
+                        [class.text-outline]="!isCurrentCardStarred()"
+                        [style.font-variation-settings]="starFillStyle">
+                    star
+                  </span>
+                </button>
+                <button class="text-outline hover:text-primary transition-colors" (click)="$event.stopPropagation()">
+                  <span class="material-symbols-outlined">volume_up</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Back Body -->
             <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 px-10 py-6 items-center">
               <div>
                 <h3 class="text-xs uppercase tracking-widest text-outline mb-3 font-bold" style="font-family: 'Be Vietnam Pro', sans-serif;">Nghĩa</h3>
@@ -151,22 +220,21 @@
                 </div>
               }
             </div>
-          }
 
-          <!-- Reveal prompt -->
-          @if (!isRevealed()) {
+            <!-- Flip back prompt -->
             <div class="py-5 flex justify-center border-t border-outline-variant/20 flex-shrink-0">
-              <button class="group/reveal flex items-center gap-2 text-on-surface-variant hover:text-primary transition-all duration-300">
-                <span class="text-sm font-medium tracking-tight" style="font-family: 'Be Vietnam Pro', sans-serif;">Nhấn để xem nghĩa</span>
-                <span class="material-symbols-outlined text-lg group-hover/reveal:translate-y-1 transition-transform">expand_more</span>
-              </button>
+              <span class="flex items-center gap-2 text-on-surface-variant text-sm font-medium tracking-tight"
+                    style="font-family: 'Be Vietnam Pro', sans-serif;">
+                Nhấn để lật lại
+                <span class="material-symbols-outlined text-lg">sync</span>
+              </span>
             </div>
-          }
+          </div>
         </div>
       </div>
 
       <!-- RATING BUTTONS -->
-      @if (isRevealed()) {
+      @if (isFlipped()) {
         <div class="mt-8 w-full max-w-2xl grid grid-cols-3 gap-6 animate-[fadeIn_0.3s_ease-out]">
           <!-- Hard -->
           <button (click)="rateCard('hard')"
@@ -207,10 +275,10 @@
         </div>
       }
 
-      <!-- Reveal button -->
-      @if (!isRevealed()) {
+      <!-- Flip button (when front is showing) -->
+      @if (!isFlipped()) {
         <div class="mt-8 w-full max-w-2xl flex justify-center">
-          <button (click)="revealCard()"
+          <button (click)="flipCard()"
                   class="px-8 py-3 zen-gradient text-on-primary font-bold rounded-full hover:-translate-y-0.5 transition-all
                          shadow-[0_8px_24px_rgba(251,179,193,0.2)]"
                   style="font-family: 'Be Vietnam Pro', sans-serif;">
@@ -220,14 +288,14 @@
       }
 
       <!-- Hotkey Legend -->
-      <div class="mt-8 flex gap-8">
+      <div class="mt-8 flex flex-wrap justify-center gap-6">
+        <div class="flex items-center gap-2 opacity-40">
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">SPACE</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Flip</span>
+        </div>
         <div class="flex items-center gap-2 opacity-40">
           <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">1</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Hard</span>
-        </div>
-        <div class="flex items-center gap-2 opacity-40">
-          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">SPACE</span>
-          <span class="text-[10px] font-bold uppercase tracking-widest">Reveal</span>
         </div>
         <div class="flex items-center gap-2 opacity-40">
           <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">2</span>
@@ -236,6 +304,10 @@
         <div class="flex items-center gap-2 opacity-40">
           <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">3</span>
           <span class="text-[10px] font-bold uppercase tracking-widest">Easy</span>
+        </div>
+        <div class="flex items-center gap-2 opacity-40">
+          <span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-[10px] font-bold border border-outline/20">S</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Star</span>
         </div>
       </div>
 

@@ -15,10 +15,11 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  decks        Deck[]
-  progress     UserProgress?
-  studySessions StudySession[]
+
+  decks          Deck[]
+  progress       UserProgress?
+  studySessions  StudySession[]
+  cardProgress   CardProgress[]
 }
 
 model UserProgress {
@@ -49,11 +50,27 @@ model Card {
   id         String   @id @default(uuid())
   deckId     String
   deck       Deck     @relation(fields: [deckId], references: [id], onDelete: Cascade)
-  term       String   // Mặt trước
-  definition String   // Mặt sau
-  example    String?  // Ví dụ
+  term       String
+  definition String
+  example    String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  progress   CardProgress[]
+}
+
+model CardProgress {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  cardId    String
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  rating    String?
+  starred   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, cardId])
+  @@index([userId])
 }
 
 model StudySession {
@@ -71,14 +88,14 @@ model GrammarLesson {
   title       String
   structure   String
   meaning     String
-  explanation String?  // Giải thích chi tiết
-  example     String   // Ví dụ chính
-  example2    String?  // Ví dụ phụ
-  example3    String?  // Ví dụ phụ 2
-  level       String   // N5, N4, N3
-  textbook    String   // Minna no Nihongo 1, Minna no Nihongo 2, Shinkanzen N3
-  lesson      Int?     // Số bài (VD: bài 1, bài 2...)
-  order       Int      @default(0) // Thứ tự hiển thị
+  explanation String?
+  example     String
+  example2    String?
+  example3    String?
+  level       String
+  textbook    String   @default("")
+  lesson      Int?
+  order       Int      @default(0)
   createdAt   DateTime @default(now())
 
   @@index([level])
@@ -92,6 +109,6 @@ model VocabularyLesson {
   meaning   String
   example   String?
   audioUrl  String?
-  level     String   // VD: N5, N4
+  level     String
   createdAt DateTime @default(now())
 }

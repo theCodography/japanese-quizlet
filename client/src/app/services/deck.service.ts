@@ -26,4 +26,13 @@ export class DeckService {
   createCard(deckId: string, payload: { term: string; definition: string; example?: string }): Observable<ApiResponse<Card>> {
     return this.http.post<ApiResponse<Card>>(`${this.baseUrl}/${deckId}/cards`, payload);
   }
+
+  // Card Progress
+  updateCardProgress(cardId: string, data: { rating?: string | null; starred?: boolean }): Observable<ApiResponse<unknown>> {
+    return this.http.put<ApiResponse<unknown>>(`${environment.apiUrl}/cards/${cardId}/progress`, data);
+  }
+
+  batchUpdateCardProgress(items: { cardId: string; rating?: string | null; starred?: boolean }[]): Observable<ApiResponse<unknown>> {
+    return this.http.post<ApiResponse<unknown>>(`${environment.apiUrl}/cards/progress/batch`, { items });
+  }
 }
